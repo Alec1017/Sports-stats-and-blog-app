@@ -10,21 +10,26 @@
 cd WBL
 ```
 
-3) create virtual environment
+3) create virtual environment (do this once)
 
 ```bash
 pip install virtualenv  # only run this if virtualenv is not installed on your system
 virtualenv venv
+```
+
+4) run virtual environment
+
+```bash
 source venv/bin/activate
 ```
 
-4) install requirements
+5) install requirements (do this once)
 
 ```bash
 pip install -r requirements.txt
 ```
 
-5) run the application
+6) run the application
 
 ```bash
 python run.py
