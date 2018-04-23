@@ -1,1 +1,41 @@
 # WBL
+
+## Usage
+
+1) clone project
+
+2) cd into WBL
+
+```bash
+cd WBL
+```
+
+3) create virtual environment (do this once)
+
+```bash
+pip install virtualenv  # only run this if virtualenv is not installed on your system
+virtualenv venv
+```
+
+4) run virtual environment
+
+```bash
+source venv/bin/activate
+```
+
+5) install requirements (do this once)
+
+```bash
+pip install -r requirements.txt
+```
+
+6) run the application
+
+```bash
+python run.py
+```
+
+app will be running on http://localhost:5000 by default
+
+
+
