@@ -21,6 +21,12 @@ def home():
     return render_template('home.html')
 
 
+@app.route('/standings')
+def standings():
+    # TODO: populate standings with database data
+    return render_template('standings.html')
+
+
 @app.route('/admin', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
