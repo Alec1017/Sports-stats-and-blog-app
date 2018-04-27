@@ -25,8 +25,10 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- only display the logout button if user is admin-->
                 {% if session.admin_logged_in %}
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/logout">Logout</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                    <li><a href="/logout">Logout</a></li>
+                {% else %}
+                    
                 {% endif %}
             </ul>
         </div>
