@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, IntegerField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, InputRequired
 
 
 class LoginForm(FlaskForm):
@@ -11,4 +11,4 @@ class LoginForm(FlaskForm):
 class TeamForm(FlaskForm):
     team_name = StringField('Team Name', validators=[DataRequired()])
     team_captain = StringField('Team Captain', validators=[DataRequired()])
-    points = IntegerField('Points (so far)', validators=[DataRequired()])
+    points = IntegerField('Points (so far)', validators=[InputRequired()])
