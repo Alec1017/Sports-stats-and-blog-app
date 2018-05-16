@@ -11,34 +11,18 @@
                 <thead>
                     <tr>
                         <th scope="col" class="text-center">Team</th>
-                        <th scope="col" class="text-center">Win</th>
-                        <th scope="col" class="text-center">Loss</th>
-                        <th scope="col" class="text-center">Pct</th>
-                        <th scope="col" class="text-center">GB</th>
+                        <th scope="col" class="text-center">Captain</th>
+                        <th scope="col" class="text-center">Points</th>
                     </tr>
                 </thead>
                 <body>
+                    {% for team in teams %}
                     <tr>
-                        <td>This team</td>
-                        <td>5</td>
-                        <td>1</td>
-                        <td>.833</td>
-                        <td>-</td>
+                        <td>{{ team.name }}</td>
+                        <td>{{ team.captain }}</td>
+                        <td>{{ team.points }}</td>
                     </tr>
-                    <tr>
-                        <td>That team</td>
-                        <td>4</td>
-                        <td>2</td>
-                        <td>.667</td>
-                        <td>1</td>
-                    </tr>
-                    <tr>
-                        <td>Some team</td>
-                        <td>3</td>
-                        <td>3</td>
-                        <td>.500</td>
-                        <td>2</td>
-                    </tr>
+                    {% endfor %}
                 </body>
             </table>
         </div>
