@@ -2,10 +2,9 @@ from flask import render_template, session, url_for, redirect, flash
 from passlib.hash import sha256_crypt
 import pandas as pd
 from functools import wraps
-import logging
 
 from app import app, mongo
-from app.forms import LoginForm, TeamForm
+from app.forms import LoginForm, TeamForm, SelectTeamForm
 
 
 # Decorator to check if admin is logged in
@@ -20,6 +19,11 @@ def admin_logged_in(f):
     return wrap
 
 
+def get_standings():
+    teams = list(mongo.db.teams.find())
+    return pd.DataFrame(teams).sort_values(by=['points'], ascending=False)
+
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -27,9 +31,7 @@ def home():
 
 @app.route('/standings')
 def standings():
-    teams = list(mongo.db.teams.find())
-    teams_df = pd.DataFrame(teams).sort_values(by=['points'], ascending=False)
-
+    teams_df = get_standings()
     return render_template('standings.html', teams=teams_df.to_dict(orient='records'))
 
 
@@ -95,6 +97,38 @@ def add_team():
         return redirect(url_for('add_team'))
 
     return render_template('admin_add_team.html', form=team_form)
+
+
+@app.route('/update_team', methods=['GET', 'POST'])
+@admin_logged_in
+def update_team():
+    teams_df = get_standings()
+
+    # current_team = mongo.db.teams.find_one({'name': updated_team})
+
+    # grab updated data from form and add it to team
+
+    # update team in database
+
+    return render_template('admin_update_team.html', teams=teams_df.to_dict(orient='records'))
+
+
+@app.route('/delete_team', methods=['GET', 'POST'])
+@admin_logged_in
+def delete_team():
+    teams_df = get_standings()
+    teams = teams_df.to_dict(orient='records')
+
+    select_team_form = SelectTeamForm()
+    select_team_form.teams.choices = [(team['name'], team['name']) for team in teams]
+
+    if select_team_form.validate_on_submit():
+        print select_team_form
+
+    return render_template('admin_delete_team.html', form=select_team_form)
+
+
+
 
 
 
