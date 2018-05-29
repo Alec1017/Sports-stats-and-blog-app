@@ -33,6 +33,10 @@ def standings():
     return render_template('standings.html', teams=teams_df.to_dict(orient='records'))
 
 
+@app.route('/players')
+def players():
+    return render_template('players.html')
+
 @app.route('/dashboard')
 @admin_logged_in
 def admin_dashboard():
