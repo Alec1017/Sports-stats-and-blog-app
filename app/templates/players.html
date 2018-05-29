@@ -1,0 +1,45 @@
+<!-- This page will show the players in the league. -->
+<!-- template will be refactored later on to accomodate dynamic data -->
+
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-8 text-center" style="float: none; margin: 0px auto;">
+	    <h1>Players <small>2018 Season</small></h1>
+        </div>
+    </div>
+
+    <div class="row">
+	<div class="col-md-4" style="margin-top: 10px">
+	    <div class="card" style="width: 18rem;">
+            	<img class="card-img-top" src="https://googledrive.com/host/1zgx5_pIN4M8MhAe9PlDDYXUc3UyrPVz4/Dan_Roche.jpg" alt="Dan Roche">
+            	<div class="card-body">
+            	    <h5 class="card-title">Dan Roche</h5>
+            	    <p class="card-text">Best closer in the league.</p>
+            	    <a href="#" class="btn btn-primary">2018 Stats</a>
+                </div>
+	    </div>
+        </div>
+	<div class="col-md-4" style="margin-top: 10px">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://cbsboston.files.wordpress.com/2014/05/danroche420.jpg" alt="Dan Roche">
+                <div class="card-body">
+                    <h5 class="card-title">Dan Roche</h5>
+                    <p class="card-text">Best closer in the league.</p>
+                    <a href="#" class="btn btn-primary">2018 Stats</a>
+                </div>
+            </div>
+        </div>
+	<div class="col-md-4" style="margin-top: 10px">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="https://cbsboston.files.wordpress.com/2014/05/danroche420.jpg" alt="Dan Roche">
+                <div class="card-body">
+                    <h5 class="card-title">Dan Roche</h5>
+                    <p class="card-text">Best closer in the league.</p>
+                    <a href="#" class="btn btn-primary">2018 Stats</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
