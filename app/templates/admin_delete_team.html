@@ -5,7 +5,11 @@
     <form action="" method="post">
         <div class="row">
             <div class="form-group col">
-                {{ form.teams }}
+                <select name="team_delete" class="form-control">
+                    {% for team in form.teams.choices %}
+                    <option>{{ team[1] }}</option>
+                    {% endfor %}
+                </select>
             </div>
         </div>
         <button type="submit" class="btn btn-danger">Delete</button>

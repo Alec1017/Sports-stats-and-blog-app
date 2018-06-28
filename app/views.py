@@ -1,4 +1,4 @@
-from flask import render_template, session, url_for, redirect, flash
+from flask import render_template, session, url_for, redirect, flash, request
 from passlib.hash import sha256_crypt
 import pandas as pd
 from functools import wraps
@@ -119,16 +119,13 @@ def delete_team():
     teams_df = get_standings()
     teams = teams_df.to_dict(orient='records')
 
+    # select_team_form = SelectTeamForm(request.form)
     select_team_form = SelectTeamForm()
-    select_team_form.teams.choices = [(team['name'], team['name']) for team in teams]
+    select_team_form.teams.choices = [(0, 'please select a team')] + [(team['name'], team['name']) for team in teams]
+    print select_team_form.teams.choices
 
     if select_team_form.validate_on_submit():
-        print select_team_form
+        print "hello"
+        print str(request.form.get('team_delete')) + '!'
 
     return render_template('admin_delete_team.html', form=select_team_form)
-
-
-
-
-
-
