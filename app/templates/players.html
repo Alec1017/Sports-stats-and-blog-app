@@ -1,0 +1,128 @@
+<!-- This page will show the players in the league. -->
+<!-- template will be refactored later on to accomodate dynamic data -->
+
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-md-8 text-center" style="float: none; margin: 0px auto;">
+	    <h1>Players <small>2018 Season</small></h1>
+        </div>
+    </div>
+    <div class="row">
+	<div class="col-md-4" style="margin-top: 10px">
+	    <div class="card" style="width: 18rem; height: 28rem;">
+            	<img class="card-img-top" src="static/Nick_Brown.jpg" alt="Nick Brown img" height="215">
+            	<div class="card-body">
+            	    <h5 class="card-title">Nick Brown</h5>
+            	    <p class="card-text"><b>League Commissioner</b><br/>Great all around player, solid on the mound and from the plate.</p>
+                </div>
+		<div class="card-footer">
+		   <a href="/2018stats" class="btn btn-primary">2018 Stats</a>
+    		</div>
+	    </div>
+        </div>
+	<div class="col-md-4" style="margin-top: 10px">
+            <div class="card" style="width: 18rem; height: 28rem;">
+                <img class="card-img-top" src="static/Ryan_Brown.PNG" alt="Ryan Brown img" height="215">
+                <div class="card-body">
+                    <h5 class="card-title">Ryan Brown</h5>
+                    <p class="card-text"><b>Founding Member of the WBL</b><br/>Consistant leadoff hitter known for his ability to switch hit and hit for power.</p>
+                </div>
+		<div class="card-footer">
+                   <a href="2018stats" class="btn btn-primary">2018 Stats</a>
+                </div>
+            </div>
+        </div>
+	<div class="col-md-4" style="margin-top: 10px">
+            <div class="card" style="width: 18rem; height: 28rem;">
+                <img class="card-img-top" src="static/Alec_DiFederico.jpg" alt="Alec DiFederico img" height="215">
+                <div class="card-body">
+                    <h5 class="card-title">Alec DiFederico</h5>
+                    <p class="card-text"><b>WBL Web Developer</b><br/>Widely regarded as the ace of the WBL, Alec is fabled for his command of the knuckleball.</p>
+                </div>
+		<div class="card-footer">
+                   <a href="2018stats" class="btn btn-primary">2018 Stats</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" style="margin-top: 30px">
+            <div class="card" style="width: 18rem; height: 28rem;">
+                <img class="card-img-top" src="https://pbs.twimg.com/media/DQ9pFn5X4AAUnvp.jpg" alt="Dan Roche" height="215">
+                <div class="card-body">
+                    <h5 class="card-title">Mike Iula</h5>
+                    <p class="card-text"><b>WBL Member</b><br/>A consistent player with an uncanny ability to make plays when the game is on the line.</p>
+                </div>
+                <div class="card-footer">
+                   <a href="2018stats" class="btn btn-primary">2018 Stats</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" style="margin-top: 30px">
+            <div class="card" style="width: 18rem; height: 28rem;">
+                <img class="card-img-top" src="static/Zack_Lacey.jpg" alt="Zack Lacey img" height="215">
+                <div class="card-body">
+                    <h5 class="card-title">Zack Lacey</h5>
+                    <p class="card-text"><b>Founding Member of the WBL</b><br/>Premiere slugger of the WBL. Zack is known for his ability to hit for power.</p>
+                </div>
+                <div class="card-footer">
+                   <a href="2018stats" class="btn btn-primary">2018 Stats</a>
+                </div>
+            </div>
+        </div>
+	<div class="col-md-4" style="margin-top: 30px">
+            <div class="card" style="width: 18rem; height: 28rem;">
+                <img class="card-img-top" src="static/Mark_Letaif.jpg" alt="Markus Letaif img" height="215">
+                <div class="card-body">
+                    <h5 class="card-title">Markus Letaif</h5>
+                    <p class="card-text"><b>Founding Member of the WBL</b><br/>Marcus is known for his defensive prowess and unique submarine-style pitching.</p>
+                </div>
+                <div class="card-footer">
+                   <a href="2018stats" class="btn btn-primary">2018 Stats</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4" style="margin-top: 30px">
+            <div class="card" style="width: 18rem; height: 28rem;">
+                <img class="card-img-top" src="static/Dan_Roche.PNG" alt="Dan Roche img" height="215">
+                <div class="card-body">
+                    <h5 class="card-title">Dan Roche</h5>
+                    <p class="card-text"><b>WBL Web Developer</b><br/>Dan is a top tier closing pitcher who also has streaks of brilliance in the batter's box.</p>
+                </div>
+                <div class="card-footer">
+                   <a href="2018stats" class="btn btn-primary">2018 Stats</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" style="margin-top: 30px">
+            <div class="card" style="width: 18rem; height: 28rem;">
+                <img class="card-img-top" src="static/Dan_Sadek.jpg" alt="Dan Sadek img" height="215">
+                <div class="card-body">
+                    <h5 class="card-title">Dan Sadek</h5>
+                    <p class="card-text"><b>Founding Member of the WBL</b><br/>Dan is the only true southpaw in the WBL. He's a reliable hitter and starting pticher.</p>
+                </div>
+                <div class="card-footer">
+                   <a href="2018stats" class="btn btn-primary">2018 Stats</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" style="margin-top: 30px">
+            <div class="card" style="width: 18rem; height: 28rem;">
+                <img class="card-img-top" src="static/Jonathan_Sullivan.jpg" alt="Jonathan Sullivan img" height="215">
+                <div class="card-body">
+                    <h5 class="card-title">Jonathan Sullivan</h5>
+                    <p class="card-text"><b>WBL Member</b><br/>Jonathan is is the only pure contact hitter in the WBL. He is also a servicable pitcher.</p>
+                </div>
+                <div class="card-footer">
+                   <a href="2018stats" class="btn btn-primary">2018 Stats</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+v

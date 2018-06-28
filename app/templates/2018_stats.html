@@ -1,0 +1,45 @@
+<!-- This page will show the standings of the league. -->
+<!-- template will be refactored later on to accomodate dynamic data -->
+
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="container">
+  	<div class="jumbotron">
+    	    <h1>{Player's} Batting Statistics</h1> 
+    	    <p>{Player's} list of stats as a batter during the 2018 season</p> 
+  	</div> 
+    </div>
+
+    <div class="page-header">
+  	<h1>{Insert Player Name}'s 2018 Batting Totals</h1>
+    </div>
+
+    <table class="table">
+	<thead>
+	    <tr>
+		<th scope="col">PA</th>
+		<th scope="col">AB</th>
+		<th scope="col">SO</th>
+		<th scope="col">BB</th>
+		<th scope="col">H</th>
+		<th scope="col">2B</th>
+		<th scope="col">3B</th>
+		<th scope="col">HR</th>
+		<th scope="col">RBI</th>
+		<th scope="col">BA</th>
+                <th scope="col">OBP</th>
+                <th scope="col">SLG</th>
+                <th scope="col">OPS</th>
+    	    </tr>
+  	</thead>
+    	<tbody>
+    	    <tr>
+      	    	<th scope="row">#</th>
+      	    	<td>#</td>
+    	    </tr>
+  	</tbody>
+    </table>
+
+{% endblock %}
