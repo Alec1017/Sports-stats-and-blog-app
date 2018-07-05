@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>Update Team </h1>
+    <form action="" method="post">
+        <div class="row">
+            <div class="form-group col">
+                <select class="form-control">
+                    {% for team in teams %}
+                    <option>{{ team.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-info">Update</button>
+    </form>
+{% endblock %}
