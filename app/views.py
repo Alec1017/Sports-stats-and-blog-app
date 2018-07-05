@@ -119,13 +119,15 @@ def delete_team():
     teams_df = get_standings()
     teams = teams_df.to_dict(orient='records')
 
-    # select_team_form = SelectTeamForm(request.form)
     select_team_form = SelectTeamForm()
-    select_team_form.teams.choices = [(0, 'please select a team')] + [(team['name'], team['name']) for team in teams]
-    print select_team_form.teams.choices
+    select_team_form.team_to_delete.choices = [(0, 'please select a team')] + [(team['name'], team['name']) for team in teams]
 
     if select_team_form.validate_on_submit():
-        print "hello"
-        print str(request.form.get('team_delete')) + '!'
+        deleted_team = request.form.get('team_to_delete')
+
+        mongo.db.teams.delete_one({'name': deleted_team})
+
+        flash('{} successfully deleted.'.format(deleted_team), 'success')
+        return redirect(url_for('delete_team'))
 
     return render_template('admin_delete_team.html', form=select_team_form)

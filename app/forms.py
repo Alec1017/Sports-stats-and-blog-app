@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, IntegerField, SelectField, Form
+from wtforms import StringField, PasswordField, IntegerField, SelectField
 from wtforms.validators import DataRequired, InputRequired
 
 
@@ -15,4 +15,4 @@ class TeamForm(FlaskForm):
 
 
 class SelectTeamForm(FlaskForm):
-    teams = SelectField('Selected Team', validators=[DataRequired()])
+    team_to_delete = SelectField('Selected Team', validators=[DataRequired()])
