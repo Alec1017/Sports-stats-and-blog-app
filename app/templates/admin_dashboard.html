@@ -7,14 +7,28 @@
         <h1>Dashboard <small>Welcome Admin</small></h1>
         <p class="lead">this is the admin control panel</p>
     </div>
+
     <h1>Standings</h1><hr>
-    <div class="row">
-        <div class="col" style="margin-bottom: 5px;">
+
+    <div class="container">
+        <!-- show only on xs screens -->
+        <div class="row d-block d-sm-none">
+            <a href="/add_team" class="btn btn-info" style="margin-bottom: 5px;">Add team</a>
+        </div>
+        <div class="row d-block d-sm-none">
+            <a href="/update_team" class="btn btn-info" style="margin-bottom: 5px;">Update team</a>
+        </div>
+        <div class="row d-block d-sm-none">
+            <a href="/delete_team" class="btn btn-danger" style="margin-bottom: 5px;">Delete team</a>
+        </div>
+        <!-- hide on screens smaller than sm -->
+        <div class="row d-none d-sm-block">
             <a href="/add_team" class="btn btn-info" style="margin-right: 5px;">Add team</a>
             <a href="/update_team" class="btn btn-info" style="margin-right: 5px;">Update team</a>
             <a href="/delete_team" class="btn btn-danger" style="margin-right: 5px;">Delete team</a>
         </div>
     </div>
+
     <div class="row">
         <div class="col">
             <h1>Players</h1><hr>
@@ -22,6 +36,7 @@
             <p>Update player stats</p>
         </div>
     </div>
+
     <div class="row">
         <div class="col">
             <h1>Blog</h1><hr>
