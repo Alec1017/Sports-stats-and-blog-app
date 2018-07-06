@@ -1,7 +1,8 @@
-from flask import render_template, session, url_for, redirect, flash, request
+from flask import render_template, session, url_for, redirect, flash, request, abort
 from passlib.hash import sha256_crypt
 import pandas as pd
 from functools import wraps
+from datetime import date
 
 from app import app, mongo
 from app.forms import LoginForm, TeamForm, SelectTeamForm, BlogPostForm
@@ -40,6 +41,22 @@ def standings():
 @app.route('/players')
 def players():
     return render_template('players.html')
+
+
+@app.route('/blog')
+def blog():
+    posts = mongo.db.blog_posts.find()
+    return render_template('blog.html', posts=posts)
+
+
+@app.route('/blog_post/<string:title>')
+def blog_post(title):
+    post = mongo.db.blog_posts.find_one({'title': title})
+
+    if post is not None:
+        return render_template('blog_post.html', post=post)
+    else:
+        abort(404)
 
 
 @app.route('/2018stats')
@@ -171,11 +188,15 @@ def new_post():
     blog_post_form = BlogPostForm()
 
     if blog_post_form.validate_on_submit():
-        blog_post = {
+        post = {
             'title': request.form.get('title'),
-            'body': request.form.get('body')
+            'body': request.form.get('body'),
+            'date': date.today().strftime('%m/%d/%Y')
         }
 
-        print blog_post
+        mongo.db.blog_posts.insert_one(post)
+
+        flash('Blog post successfully added!', 'success')
+        return redirect(url_for('admin_dashboard'))
 
     return render_template('admin_add_blog_post.html', form=blog_post_form)

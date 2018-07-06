@@ -1,0 +1,18 @@
+<!-- All blog posts will be listed here -->
+
+{% extends 'layout.html' %}
+
+{% block body %}
+    <div class="container text-center">
+        <h1>WBL Blog</h1>
+    </div>
+    <ul class="list-group">
+        {% for post in posts %}
+        <a href="blog_post/{{post.title}}">
+            <li class="list-group-item">
+                <h6>{{ post.title }}</h6>
+            </li>
+        </a>
+        {% endfor %}
+    </ul>
+{% endblock %}

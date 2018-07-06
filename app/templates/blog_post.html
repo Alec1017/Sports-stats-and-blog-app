@@ -1,0 +1,12 @@
+<!-- Displays the blog post -->
+
+{% extends 'layout.html' %}
+
+{% block body %}
+    <h1>{{ post.title }}</h1>
+    <small>Written by the Commissioner on {{ post.date }}</small>
+    <hr>
+    <div>
+        {{ post.body|safe }}
+    </div>
+{% endblock %}
