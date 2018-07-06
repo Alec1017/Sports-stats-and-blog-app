@@ -15,4 +15,4 @@ class TeamForm(FlaskForm):
 
 
 class SelectTeamForm(FlaskForm):
-    team_to_delete = SelectField('Selected Team', validators=[DataRequired()])
+    selected_team = SelectField('Selected Team', validators=[DataRequired()])

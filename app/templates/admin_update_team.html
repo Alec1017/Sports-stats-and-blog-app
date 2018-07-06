@@ -1,15 +1,13 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-    <h1>Update Team </h1>
+    {% from "includes/_utils.html" import render_select_field %}
+    <h1>Update Team</h1>
     <form action="" method="post">
+        {{ form.hidden_tag() }}
         <div class="row">
             <div class="form-group col">
-                <select class="form-control">
-                    {% for team in teams %}
-                    <option>{{ team.name }}</option>
-                    {% endfor %}
-                </select>
+                {{ render_select_field(form.selected_team, class_="form-control") }}
             </div>
         </div>
         <button type="submit" class="btn btn-info">Update</button>

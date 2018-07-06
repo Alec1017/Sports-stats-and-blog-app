@@ -24,6 +24,8 @@ def get_standings():
     return pd.DataFrame(teams).sort_values(by=['points'], ascending=False)
 
 
+# Routes
+
 @app.route('/')
 def home():
     return render_template('home.html')
@@ -39,9 +41,11 @@ def standings():
 def players():
     return render_template('players.html')
 
+
 @app.route('/2018stats')
 def NB2018():
     return render_template('2018_stats.html')
+
 
 @app.route('/dashboard')
 @admin_logged_in
@@ -103,14 +107,42 @@ def add_team():
 @admin_logged_in
 def update_team():
     teams_df = get_standings()
+    teams = teams_df.to_dict(orient='records')
 
-    # current_team = mongo.db.teams.find_one({'name': updated_team})
+    select_team_form = SelectTeamForm()
+    select_team_form.selected_team.choices = [(0, 'please select a team')] + [(team['name'], team['name']) for team in teams]
 
-    # grab updated data from form and add it to team
+    if select_team_form.validate_on_submit():
+        updated_team = request.form.get('selected_team')
+        return redirect(url_for('update_team_info', team=updated_team))
 
-    # update team in database
+    return render_template('admin_update_team.html', form=select_team_form)
 
-    return render_template('admin_update_team.html', teams=teams_df.to_dict(orient='records'))
+
+@app.route('/update_team_info/<string:team>', methods=['GET', 'POST'])
+@admin_logged_in
+def update_team_info(team):
+    team_form = TeamForm()
+
+    team_to_update = mongo.db.teams.find_one({'name': team})
+
+    team_form.team_name.data = team_to_update['name']
+    team_form.team_captain.data = team_to_update['captain']
+    team_form.points.data = team_to_update['points']
+
+    if team_form.validate_on_submit():
+        updated_team = {
+            'name': request.form['team_name'],
+            'captain': request.form['team_captain'],
+            'points': request.form['points']
+        }
+
+        mongo.db.teams.replace_one({'name': team}, updated_team)
+
+        flash('{} successfully updated.'.format(updated_team['name']), 'success')
+        return redirect(url_for('update_team'))
+
+    return render_template('admin_update_team_info.html', form=team_form)
 
 
 @app.route('/delete_team', methods=['GET', 'POST'])
@@ -120,10 +152,10 @@ def delete_team():
     teams = teams_df.to_dict(orient='records')
 
     select_team_form = SelectTeamForm()
-    select_team_form.team_to_delete.choices = [(0, 'please select a team')] + [(team['name'], team['name']) for team in teams]
+    select_team_form.selected_team.choices = [(0, 'please select a team')] + [(team['name'], team['name']) for team in teams]
 
     if select_team_form.validate_on_submit():
-        deleted_team = request.form.get('team_to_delete')
+        deleted_team = request.form.get('selected_team')
 
         mongo.db.teams.delete_one({'name': deleted_team})
 

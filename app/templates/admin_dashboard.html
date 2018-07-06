@@ -9,7 +9,6 @@
     </div>
 
     <h1>Standings</h1><hr>
-
     <div class="container">
         <!-- show only on xs screens -->
         <div class="row d-block d-sm-none">
@@ -29,19 +28,35 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
-            <h1>Players</h1><hr>
-            <p>Add a player</p>
-            <p>Update player stats</p>
+    <h1>Players</h1><hr>
+    <div class="container">
+        <!-- show only on xs screens -->
+        <div class="row d-block d-sm-none">
+            <a href="/add_player" class="btn btn-info" style="margin-bottom: 5px;">Add a player</a>
+        </div>
+        <div class="row d-block d-sm-none">
+            <a href="/update_player" class="btn btn-info" style="margin-bottom: 5px;">Update player stats</a>
+        </div>
+        <!-- hide on screens smaller than sm -->
+        <div class="row d-none d-sm-block">
+            <a href="/add_player" class="btn btn-info" style="margin-right: 5px;">Add a player</a>
+            <a href="/update_player" class="btn btn-info" style="margin-right: 5px;">Update player stats</a>
         </div>
     </div>
 
-    <div class="row">
-        <div class="col">
-            <h1>Blog</h1><hr>
-            <p>Add blog post</p>
-            <p>Update blog post</p>
+    <h1>Blog</h1><hr>
+    <div class="container">
+        <!-- show only on xs screens -->
+        <div class="row d-block d-sm-none">
+            <a href="/add_post" class="btn btn-info" style="margin-bottom: 5px;">Add a blog post</a>
+        </div>
+        <div class="row d-block d-sm-none">
+            <a href="/update_post" class="btn btn-info" style="margin-bottom: 5px;">Update a blog post</a>
+        </div>
+        <!-- hide on screens smaller than sm -->
+        <div class="row d-none d-sm-block">
+            <a href="/add_post" class="btn btn-info" style="margin-right: 5px;">Add a blog post</a>
+            <a href="/update_post" class="btn btn-info" style="margin-right: 5px;">Update a blog post</a>
         </div>
     </div>
 {% endblock %}
