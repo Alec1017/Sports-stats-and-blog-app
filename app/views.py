@@ -4,7 +4,7 @@ import pandas as pd
 from functools import wraps
 
 from app import app, mongo
-from app.forms import LoginForm, TeamForm, SelectTeamForm
+from app.forms import LoginForm, TeamForm, SelectTeamForm, BlogPostForm
 
 
 # Decorator to check if admin is logged in
@@ -163,3 +163,19 @@ def delete_team():
         return redirect(url_for('delete_team'))
 
     return render_template('admin_delete_team.html', form=select_team_form)
+
+
+@app.route('/add_post', methods=['GET', 'POST'])
+@admin_logged_in
+def new_post():
+    blog_post_form = BlogPostForm()
+
+    if blog_post_form.validate_on_submit():
+        blog_post = {
+            'title': request.form.get('title'),
+            'body': request.form.get('body')
+        }
+
+        print blog_post
+
+    return render_template('admin_add_blog_post.html', form=blog_post_form)

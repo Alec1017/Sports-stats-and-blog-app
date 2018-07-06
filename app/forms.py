@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, IntegerField, SelectField
+from wtforms import StringField, PasswordField, IntegerField, SelectField, TextAreaField
 from wtforms.validators import DataRequired, InputRequired
 
 
@@ -16,3 +16,8 @@ class TeamForm(FlaskForm):
 
 class SelectTeamForm(FlaskForm):
     selected_team = SelectField('Selected Team', validators=[DataRequired()])
+
+
+class BlogPostForm(FlaskForm):
+    title = StringField('Title', validators=[DataRequired()])
+    body = TextAreaField('Body', validators=[DataRequired()])
