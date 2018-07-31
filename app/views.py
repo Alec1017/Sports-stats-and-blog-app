@@ -191,7 +191,8 @@ def new_post():
         post = {
             'title': request.form.get('title'),
             'body': request.form.get('body'),
-            'date': date.today().strftime('%m/%d/%Y')
+            'date': date.today().strftime('%m/%d/%Y'),
+            'author': 'Commissioner'
         }
 
         mongo.db.blog_posts.insert_one(post)
