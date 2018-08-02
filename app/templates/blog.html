@@ -6,9 +6,6 @@
     <style>
         p {
             margin-bottom: 0;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            overflow: hidden;
         }
     </style>
 
@@ -16,7 +13,7 @@
         <h1>WBL Blog</h1>
     </div>
     <ul class="list-group">
-        {% for post in posts %}
+        {% for post in posts|reverse %}
             <li class="list-group-item">
                 <div class="row">
                     <div class="col-6">
@@ -26,7 +23,7 @@
                         {{ post.date }}
                     </div>
                 </div>
-                {{ post.body|safe }}
+                {{ post.body|safe|truncate(160, True) }}
             </li>
         {% endfor %}
     </ul>

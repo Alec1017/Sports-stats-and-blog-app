@@ -22,6 +22,7 @@ def admin_logged_in(f):
 
 def get_standings():
     teams = list(mongo.db.teams.find())
+    print pd.DataFrame(teams).sort_values(by=['points'])
     return pd.DataFrame(teams).sort_values(by=['points'], ascending=False)
 
 
@@ -154,7 +155,7 @@ def update_team_info(team):
             'points': request.form['points']
         }
 
-        mongo.db.teams.replace_one({'name': team}, updated_team)
+        mongo.db.teams.find_one_and_update({'name': team}, {"$set": updated_team})
 
         flash('{} successfully updated.'.format(updated_team['name']), 'success')
         return redirect(url_for('update_team'))
