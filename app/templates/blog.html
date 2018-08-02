@@ -7,6 +7,12 @@
         p {
             margin-bottom: 0;
         }
+
+        a.title-link,
+        a.title-link:hover {
+            color: inherit;
+            text-decoration: none;
+        }
     </style>
 
     <div class="container text-center">
@@ -14,17 +20,19 @@
     </div>
     <ul class="list-group">
         {% for post in posts|reverse %}
+        <a class="title-link" href="blog_post/{{post.title}}">
             <li class="list-group-item">
                 <div class="row">
-                    <div class="col-6">
-                        <a href="blog_post/{{post.title}}"><h6>{{ post.title }}</h6></a>
+                    <div class="col-8">
+                        <h6>{{ post.title }}</h6>
                     </div>
-                    <div class="col-6 text-right">
+                    <div class="col-4 text-right">
                         {{ post.date }}
                     </div>
                 </div>
                 {{ post.body|safe|truncate(160, True) }}
             </li>
+        </a>
         {% endfor %}
     </ul>
 {% endblock %}
