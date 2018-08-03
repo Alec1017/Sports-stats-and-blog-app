@@ -1,10 +1,12 @@
-from flask import render_template, session, url_for, redirect, flash, request
+from flask import render_template, session, url_for, redirect, flash, request, abort
 from passlib.hash import sha256_crypt
 import pandas as pd
 from functools import wraps
+from datetime import date
+from bson.objectid import ObjectId
 
 from app import app, mongo
-from app.forms import LoginForm, TeamForm, SelectTeamForm
+from app.forms import LoginForm, TeamForm, SelectTeamForm, BlogPostForm
 
 
 # Decorator to check if admin is logged in
@@ -21,8 +23,11 @@ def admin_logged_in(f):
 
 def get_standings():
     teams = list(mongo.db.teams.find())
+    print pd.DataFrame(teams).sort_values(by=['points'])
     return pd.DataFrame(teams).sort_values(by=['points'], ascending=False)
 
+
+# Routes
 
 @app.route('/')
 def home():
@@ -39,9 +44,28 @@ def standings():
 def players():
     return render_template('players.html')
 
+
+@app.route('/blog')
+def blog():
+    posts = mongo.db.blog_posts.find()
+    return render_template('blog.html', posts=posts)
+
+
+@app.route('/blog_post/<string:id>')
+def blog_post(id):
+    object_id = ObjectId(id)
+    post = mongo.db.blog_posts.find_one({'_id': object_id})
+
+    if post is not None:
+        return render_template('blog_post.html', post=post)
+    else:
+        abort(404)
+
+
 @app.route('/2018stats')
 def NB2018():
     return render_template('2018_stats.html')
+
 
 @app.route('/dashboard')
 @admin_logged_in
@@ -103,14 +127,42 @@ def add_team():
 @admin_logged_in
 def update_team():
     teams_df = get_standings()
+    teams = teams_df.to_dict(orient='records')
 
-    # current_team = mongo.db.teams.find_one({'name': updated_team})
+    select_team_form = SelectTeamForm()
+    select_team_form.selected_team.choices = [(0, 'please select a team')] + [(team['name'], team['name']) for team in teams]
 
-    # grab updated data from form and add it to team
+    if select_team_form.validate_on_submit():
+        updated_team = request.form.get('selected_team')
+        return redirect(url_for('update_team_info', team=updated_team))
 
-    # update team in database
+    return render_template('admin_update_team.html', form=select_team_form)
 
-    return render_template('admin_update_team.html', teams=teams_df.to_dict(orient='records'))
+
+@app.route('/update_team_info/<string:team>', methods=['GET', 'POST'])
+@admin_logged_in
+def update_team_info(team):
+    team_form = TeamForm()
+
+    team_to_update = mongo.db.teams.find_one({'name': team})
+
+    team_form.team_name.data = team_to_update['name']
+    team_form.team_captain.data = team_to_update['captain']
+    team_form.points.data = team_to_update['points']
+
+    if team_form.validate_on_submit():
+        updated_team = {
+            'name': request.form['team_name'],
+            'captain': request.form['team_captain'],
+            'points': request.form['points']
+        }
+
+        mongo.db.teams.find_one_and_update({'name': team}, {"$set": updated_team})
+
+        flash('{} successfully updated.'.format(updated_team['name']), 'success')
+        return redirect(url_for('update_team'))
+
+    return render_template('admin_update_team_info.html', form=team_form)
 
 
 @app.route('/delete_team', methods=['GET', 'POST'])
@@ -120,10 +172,10 @@ def delete_team():
     teams = teams_df.to_dict(orient='records')
 
     select_team_form = SelectTeamForm()
-    select_team_form.team_to_delete.choices = [(0, 'please select a team')] + [(team['name'], team['name']) for team in teams]
+    select_team_form.selected_team.choices = [(0, 'please select a team')] + [(team['name'], team['name']) for team in teams]
 
     if select_team_form.validate_on_submit():
-        deleted_team = request.form.get('team_to_delete')
+        deleted_team = request.form.get('selected_team')
 
         mongo.db.teams.delete_one({'name': deleted_team})
 
@@ -131,3 +183,62 @@ def delete_team():
         return redirect(url_for('delete_team'))
 
     return render_template('admin_delete_team.html', form=select_team_form)
+
+
+@app.route('/add_post', methods=['GET', 'POST'])
+@admin_logged_in
+def new_post():
+    blog_post_form = BlogPostForm()
+
+    if blog_post_form.validate_on_submit():
+        post = {
+            'title': request.form.get('title'),
+            'body': request.form.get('body'),
+            'date': date.today().strftime('%m/%d/%Y'),
+            'author': 'Commissioner'
+        }
+
+        mongo.db.blog_posts.insert_one(post)
+
+        flash('Blog post successfully added!', 'success')
+        return redirect(url_for('admin_dashboard'))
+
+    return render_template('admin_add_blog_post.html', form=blog_post_form)
+
+
+@app.route('/update_blog_post/<string:id>', methods=['GET', 'POST'])
+@admin_logged_in
+def update_blog_post(id):
+    object_id = ObjectId(id)
+    blog_form = BlogPostForm()
+
+    post_to_update = mongo.db.blog_posts.find_one({'_id': object_id})
+    print post_to_update
+
+    blog_form.title.data = post_to_update['title']
+    blog_form.body.data = post_to_update['body']
+
+    if blog_form.validate_on_submit():
+        updated_post = {
+            'title': request.form['title'],
+            'body': request.form['body'],
+        }
+
+        mongo.db.blog_posts.find_one_and_update({'_id': object_id}, {"$set": updated_post})
+
+        flash('Successfully updated blog post.', 'success')
+        return redirect(url_for('blog'))
+
+    return render_template('admin_update_blog_post.html', form=blog_form)
+
+
+@app.route('/delete_blog_post/<string:id>')
+@admin_logged_in
+def delete_blog_post(id):
+    object_id = ObjectId(id)
+
+    mongo.db.blog_posts.delete_one({'_id': object_id})
+
+    flash('Successfully deleted blog post', 'success')
+    return redirect(url_for('blog'))
+
