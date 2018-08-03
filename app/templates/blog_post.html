@@ -9,4 +9,29 @@
     <div>
         {{ post.body|safe }}
     </div>
+    <a href="/blog" class="btn btn-info" style="width: 5rem;">Back</a>
+    {% if session.admin_logged_in %}
+        <a href="/update_blog_post/{{post._id}}" class="btn btn-warning" style="width: 6rem;">Edit Post</a>
+        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete-modal" style="width: 7rem;">Delete Post</button>
+    {% endif %}
+
+    <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="delete-modal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5>Delete this post?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    You're about to delete this blog post. Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
+                    <a href="/delete_blog_post/{{post._id}}" class="btn btn-danger" style="width: 7rem;">Delete Post</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

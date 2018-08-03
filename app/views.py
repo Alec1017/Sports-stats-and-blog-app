@@ -3,6 +3,7 @@ from passlib.hash import sha256_crypt
 import pandas as pd
 from functools import wraps
 from datetime import date
+from bson.objectid import ObjectId
 
 from app import app, mongo
 from app.forms import LoginForm, TeamForm, SelectTeamForm, BlogPostForm
@@ -50,9 +51,10 @@ def blog():
     return render_template('blog.html', posts=posts)
 
 
-@app.route('/blog_post/<string:title>')
-def blog_post(title):
-    post = mongo.db.blog_posts.find_one({'title': title})
+@app.route('/blog_post/<string:id>')
+def blog_post(id):
+    object_id = ObjectId(id)
+    post = mongo.db.blog_posts.find_one({'_id': object_id})
 
     if post is not None:
         return render_template('blog_post.html', post=post)
@@ -202,3 +204,41 @@ def new_post():
         return redirect(url_for('admin_dashboard'))
 
     return render_template('admin_add_blog_post.html', form=blog_post_form)
+
+
+@app.route('/update_blog_post/<string:id>', methods=['GET', 'POST'])
+@admin_logged_in
+def update_blog_post(id):
+    object_id = ObjectId(id)
+    blog_form = BlogPostForm()
+
+    post_to_update = mongo.db.blog_posts.find_one({'_id': object_id})
+    print post_to_update
+
+    blog_form.title.data = post_to_update['title']
+    blog_form.body.data = post_to_update['body']
+
+    if blog_form.validate_on_submit():
+        updated_post = {
+            'title': request.form['title'],
+            'body': request.form['body'],
+        }
+
+        mongo.db.blog_posts.find_one_and_update({'_id': object_id}, {"$set": updated_post})
+
+        flash('Successfully updated blog post.', 'success')
+        return redirect(url_for('blog'))
+
+    return render_template('admin_update_blog_post.html', form=blog_form)
+
+
+@app.route('/delete_blog_post/<string:id>')
+@admin_logged_in
+def delete_blog_post(id):
+    object_id = ObjectId(id)
+
+    mongo.db.blog_posts.delete_one({'_id': object_id})
+
+    flash('Successfully deleted blog post', 'success')
+    return redirect(url_for('blog'))
+
