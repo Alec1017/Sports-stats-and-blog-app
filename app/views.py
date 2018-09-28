@@ -62,9 +62,10 @@ def blog_post(id):
         abort(404)
 
 
-@app.route('/2018stats')
-def NB2018():
-    return render_template('2018_stats.html')
+@app.route('/stats')
+def stats():
+    print('hello there')
+    return render_template('stats.html')
 
 
 @app.route('/dashboard')
@@ -213,7 +214,6 @@ def update_blog_post(id):
     blog_form = BlogPostForm()
 
     post_to_update = mongo.db.blog_posts.find_one({'_id': object_id})
-    print post_to_update
 
     blog_form.title.data = post_to_update['title']
     blog_form.body.data = post_to_update['body']
