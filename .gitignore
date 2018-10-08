@@ -1,6 +1,6 @@
 # optimized files
 __pycache__/
-*.py[cod]
+*.pyc
 
 # Environments
 venv/

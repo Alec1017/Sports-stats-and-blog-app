@@ -1,13 +1,13 @@
-# WBL
+# Sports stats and blog app
 
-## Usage
+## Getting Started
 
 1) clone project
 
-2) cd into WBL
+2) cd into application
 
 ```bash
-cd WBL
+cd sports-stats-and-blog-app
 ```
 
 3) create virtual environment (do this once)
@@ -23,7 +23,7 @@ virtualenv venv
 source venv/bin/activate
 ```
 
-5) install requirements (do this once)
+5) install requirements 
 
 ```bash
 pip install -r requirements.txt
@@ -49,6 +49,3 @@ flask shell
 from app import mongo
 mongo.db.users.find({'username': 'test'})
 ```
-
-
-
