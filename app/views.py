@@ -23,7 +23,6 @@ def admin_logged_in(f):
 
 def get_standings():
     teams = list(mongo.db.teams.find())
-    print pd.DataFrame(teams).sort_values(by=['points'])
     return pd.DataFrame(teams).sort_values(by=['points'], ascending=False)
 
 
