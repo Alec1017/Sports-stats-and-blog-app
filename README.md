@@ -10,26 +10,19 @@
 cd sports-stats-and-blog-app
 ```
 
-3) create virtual environment (do this once)
+3) install from Pipfile
 
 ```bash
-pip install virtualenv  # only run this if virtualenv is not installed on your system
-virtualenv venv
+pipenv install
 ```
 
-4) run virtual environment
+4) activate Pipenv shell
 
 ```bash
-source venv/bin/activate
+pipenv shell
 ```
 
-5) install requirements 
-
-```bash
-pip install -r requirements.txt
-```
-
-6) run the application
+5) run the application
 
 ```bash
 python run.py
