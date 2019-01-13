@@ -1,12 +1,12 @@
 <template>
-   <h1>{{ message }}</h1>
+   <h1 class="title-message">{{ message }}</h1>
 </template>
 <script>
   export default {
     name: 'app',
     data() {
       return {
-        message: 'Hello, Vue!'
+        message: 'Hello Vue!'
       };
     }
    }

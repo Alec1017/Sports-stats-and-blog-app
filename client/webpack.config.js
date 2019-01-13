@@ -2,7 +2,7 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
-  entry: path.join(__dirname, 'src/javascript/main.js'),
+  entry: './src/javascript/main.js',
   output: {
     publicPath: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
@@ -19,6 +19,14 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
       }
     ]
   },
