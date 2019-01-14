@@ -27,6 +27,12 @@ module.exports = {
           'css-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: {
+          loader: 'file-loader'
+        }
       }
     ]
   },
@@ -37,5 +43,12 @@ module.exports = {
     contentBase: path.join(__dirname, 'src/layouts'),
     port: 3000, 
     publicPath: 'http://localhost:3000/dist'
-  }
+  },
+  resolve: {
+    alias: {
+      vue$: 'vue/dist/vue.esm.js'
+    },
+    modules: ['node_modules', 'src'],
+    extensions: ['.js', '.json']
+  },
 }
