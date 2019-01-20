@@ -31,8 +31,12 @@ module.exports = {
       {
         test: /\.(png|jpg|gif)$/,
         use: {
-          loader: 'file-loader'
+          loader: 'url-loader'
         }
+      },
+      {
+        test: /\.svg/,
+        loader: 'vue-svg-loader'
       }
     ]
   },
@@ -42,13 +46,11 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'src/layouts'),
     port: 3000, 
-    publicPath: 'http://localhost:3000/dist'
+    publicPath: 'http://localhost:3000/dist/'
   },
   resolve: {
     alias: {
       vue$: 'vue/dist/vue.esm.js'
-    },
-    modules: ['node_modules', 'src'],
-    extensions: ['.js', '.json']
+    }
   },
 }
