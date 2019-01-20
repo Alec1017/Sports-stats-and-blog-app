@@ -44,10 +44,10 @@ def players():
     return render_template('players.html')
 
 
-@app.route('/blog')
+@app.route('/feed')
 def blog():
     posts = mongo.db.blog_posts.find()
-    return render_template('blog.html', posts=posts)
+    return render_template('feed.html', posts=posts)
 
 
 @app.route('/blog_post/<string:id>')
@@ -61,10 +61,10 @@ def blog_post(id):
         abort(404)
 
 
-@app.route('/stats')
-def stats():
-    print('hello there')
-    return render_template('stats.html')
+@app.route('/stats/<string:captain>')
+def stats(captain):
+    team = mongo.db.teams.find_one({'captain': captain})
+    return render_template('stats.html', team=team)
 
 
 @app.route('/dashboard')

@@ -6,10 +6,10 @@
 {% block body %}
   <div class="row">
     <div class="col-3">
-      <img class="card-img-top" src="static/img/Nick_Brown.jpg" alt="Nick Brown" height="215">
+      <img class="card-img-top" src="{{ team.image }}" alt="Nick Brown" height="215">
     </div>
     <div class="col-9" style="padding-top: 3rem">
-      <h1>Nick Brown</h1>
+      <h1>{{ team.captain }}</h1>
       <h4 style="color: gray">Bat: R | Throw: R | height | Age: 20</h4>
     </div>
   </div>
@@ -32,12 +32,41 @@
       <!-- Content for the nav -->
       <div class="tab-content">
         <div id="stats" class="tab-pane fade show active">
-          <h3>HOME</h3>
-          <p>Some content.</p>
+          <table class="table table-striped table-bordered" style="margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th scope="col" class="text-center">completions</th>
+                    <th scope="col" class="text-center">attempts</th>
+                    <th scope="col" class="text-center">completion %</th>
+                    <th scope="col" class="text-center">pass td</th>
+                    <th scope="col" class="text-center">thrown int</th>
+                    <th scope="col" class="text-center">receptions</th>
+                    <th scope="col" class="text-center">receiving td</th>
+                    <th scope="col" class="text-center">rushing td</th>
+                    <th scope="col" class="text-center">caught int</th>
+                    <th scope="col" class="text-center">sacks</th>
+                    <th scope="col" class="text-center">games played</th>
+                </tr>
+            </thead>
+            <body>
+              <tr>
+                <td>{{ team.completions }}</td>
+                <td>{{ team.attempts }}</td>
+                <td>{{ team.get('completion-percentage') }}</td>
+                <td>{{ team.get('pass-touchdowns') }}</td>
+                <td>{{ team.get('thrown-interceptions') }}</td>
+                <td>{{ team.receptions }}</td>
+                <td>{{ team.get('receiving-touchdowns') }}</td>
+                <td>{{ team.get('rushing-touchdowns') }}</td>
+                <td>{{ team.get('caught-interceptions') }}</td>
+                <td>{{ team.sacks }}</td>
+                <td>{{ team.get('games-played') }}</td>
+              </tr>
+            </body>
+        </table>
         </div>
         <div id="analytics" class="tab-pane fade">
-          <h3>Menu 1</h3>
-          <p>Some content in menu 1.</p>
+          <h3>Coming soon to a theater near you</h3>
         </div>
       </div>
     </div>
