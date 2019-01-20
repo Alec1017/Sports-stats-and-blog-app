@@ -41,7 +41,8 @@ def standings():
 
 @app.route('/players')
 def players():
-    return render_template('players.html')
+    teams = list(mongo.db.teams.find())
+    return render_template('players.html', teams=teams)
 
 
 @app.route('/feed')
