@@ -1,9 +1,9 @@
 <template>
   <div class="homepage">
-    <div class="container">
-      <div class="jumbotron text-center" style="margin-top: 10px; padding-top: 1rem;">
+    <div class="homepage__wrapper container">
+      <div class="homepage__inner jumbotron text-center">
         <h1>Welcome to the WBL</h1>
-        <div id="carousel" class="carousel slide" data-ride="carousel">
+        <div id="carousel" class="homepage__carousel carousel slide" data-ride="carousel">
           <ol class="carousel-indicators">
             <li data-target="#carousel" data-slide-to="0" class="active"></li>
             <li data-target="#carousel" data-slide-to="1"></li>
@@ -33,6 +33,7 @@
     </div>
 
     <Footer />
+
   </div>
 </template>
 
@@ -44,9 +45,9 @@
     data() {
       return {
         images: {
-          miniGolf: require('../../static/images/Mini_Golf_Tournament_Pic.jpg'),
-          fblChamps: require('../../static/images/FBL_Champs.jpg'),
-          wblChamps: require('../../static/images/WBL_Champs_Yard.jpg')
+          miniGolf: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Mini_Golf_Tournament_Pic.jpg",
+          fblChamps: "https://upload.wikimedia.org/wikipedia/commons/0/0a/FBL_Champs.jpg",
+          wblChamps: "https://upload.wikimedia.org/wikipedia/commons/f/fd/WBL_Champs_Yard.jpg"
         }
       }
     },
