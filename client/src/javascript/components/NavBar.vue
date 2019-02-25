@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
       <div class="container">
-          <a class="navbar-brand" href="/">WBL</a>
+          <a class="navbar-brand" href="/">FBL</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
           </button>
@@ -10,7 +10,8 @@
               <!-- left side of the navbar -->
               <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                      <a class="nav-link" href="/blog">Blog</a>
+                      <!-- <a class="nav-link" href="/feed">Feed</a> -->
+                      <router-link class="nav-link" to="/feed">Feed</router-link>
                   </li>
                   <li class="nav-item">
                       <a class="nav-link" href="/players">Players</a>
