@@ -6,12 +6,18 @@ import '../stylesheets/main.scss';
 import App from './App.vue';
 import HomePage from './pages/HomePage.vue';
 import Feed from './pages/Feed.vue';
+import Players from './pages/Players.vue';
+import Standings from './pages/Standings.vue';
 
+Vue.prototype.$api = 'http://localhost:5000/api';
 Vue.use(VueRouter);
+
 
 const routes = [
   {path: '/', component: HomePage},
-  {path: '/feed', component: Feed}
+  {path: '/feed', component: Feed},
+  {path: '/players', component: Players},
+  {path: '/standings', component: Standings}
 ]
 
 const router = new VueRouter({

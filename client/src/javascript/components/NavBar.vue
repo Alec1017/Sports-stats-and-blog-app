@@ -10,14 +10,13 @@
               <!-- left side of the navbar -->
               <ul class="navbar-nav mr-auto">
                   <li class="nav-item">
-                      <!-- <a class="nav-link" href="/feed">Feed</a> -->
                       <router-link class="nav-link" to="/feed">Feed</router-link>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="/players">Players</a>
+                      <router-link class="nav-link" to="/players">Players</router-link>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link" href="/standings">Standings</a>
+                      <router-link class="nav-link" to="/standings">Standings</router-link>
                   </li>
               </ul>
 

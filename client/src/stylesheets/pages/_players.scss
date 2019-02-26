@@ -1,0 +1,20 @@
+.players {
+
+  &__title {
+    float: none;
+    margin: 0 auto;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+  }
+
+  &__player {
+    width: 18rem;
+    height: 28rem;
+    float: none;
+    margin: 0 auto;
+  }
+}

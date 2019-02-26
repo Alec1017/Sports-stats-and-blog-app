@@ -1,9 +1,10 @@
-from flask import render_template, session, url_for, redirect, flash, request, abort
+from flask import render_template, session, url_for, redirect, flash, request, abort, jsonify
 from passlib.hash import sha256_crypt
 import pandas as pd
 from functools import wraps
 from datetime import date
 from bson.objectid import ObjectId
+from bson import json_util
 
 from app import app, mongo
 from app.forms import LoginForm, TeamForm, SelectTeamForm, BlogPostForm
@@ -28,38 +29,28 @@ def get_standings():
 
 # Routes
 
-@app.route('/')
-def home():
-    return render_template('home.html')
+# @app.route('/', methods=['GET'])
+# def home():
+#     return jsonify('pong!')
 
 
-@app.route('/standings')
+@app.route('/api/standings', methods=['GET'])
 def standings():
     teams_df = get_standings()
-    return render_template('standings.html', teams=teams_df.to_dict(orient='records'))
+    #return render_template('standings.html', teams=teams_df.to_dict(orient='records'))
+    return json_util.dumps(teams_df.to_dict(orient='records'))
 
 
-@app.route('/players')
+@app.route('/api/players', methods=['GET'])
 def players():
     teams = list(mongo.db.teams.find())
-    return render_template('players.html', teams=teams)
+    return json_util.dumps(teams)
 
 
-@app.route('/feed')
-def blog():
-    posts = mongo.db.blog_posts.find()
-    return render_template('feed.html', posts=posts)
 
 
-@app.route('/blog_post/<string:id>')
-def blog_post(id):
-    object_id = ObjectId(id)
-    post = mongo.db.blog_posts.find_one({'_id': object_id})
+##################################################
 
-    if post is not None:
-        return render_template('blog_post.html', post=post)
-    else:
-        abort(404)
 
 
 @app.route('/stats/<string:captain>')
@@ -186,59 +177,5 @@ def delete_team():
     return render_template('admin_delete_team.html', form=select_team_form)
 
 
-@app.route('/add_post', methods=['GET', 'POST'])
-@admin_logged_in
-def new_post():
-    blog_post_form = BlogPostForm()
 
-    if blog_post_form.validate_on_submit():
-        post = {
-            'title': request.form.get('title'),
-            'body': request.form.get('body'),
-            'date': date.today().strftime('%m/%d/%Y'),
-            'author': 'Commissioner'
-        }
-
-        mongo.db.blog_posts.insert_one(post)
-
-        flash('Blog post successfully added!', 'success')
-        return redirect(url_for('admin_dashboard'))
-
-    return render_template('admin_add_blog_post.html', form=blog_post_form)
-
-
-@app.route('/update_blog_post/<string:id>', methods=['GET', 'POST'])
-@admin_logged_in
-def update_blog_post(id):
-    object_id = ObjectId(id)
-    blog_form = BlogPostForm()
-
-    post_to_update = mongo.db.blog_posts.find_one({'_id': object_id})
-
-    blog_form.title.data = post_to_update['title']
-    blog_form.body.data = post_to_update['body']
-
-    if blog_form.validate_on_submit():
-        updated_post = {
-            'title': request.form['title'],
-            'body': request.form['body'],
-        }
-
-        mongo.db.blog_posts.find_one_and_update({'_id': object_id}, {"$set": updated_post})
-
-        flash('Successfully updated blog post.', 'success')
-        return redirect(url_for('blog'))
-
-    return render_template('admin_update_blog_post.html', form=blog_form)
-
-
-@app.route('/delete_blog_post/<string:id>')
-@admin_logged_in
-def delete_blog_post(id):
-    object_id = ObjectId(id)
-
-    mongo.db.blog_posts.delete_one({'_id': object_id})
-
-    flash('Successfully deleted blog post', 'success')
-    return redirect(url_for('blog'))
 
