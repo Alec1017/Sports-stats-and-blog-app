@@ -14,7 +14,7 @@
               <p class="players__card__text card-text"><b>{{ team.role }}</b><br/>{{ team.description }}</p>
           </div>
           <div class="players__card__footer card-footer">
-              <a :href="`/stats/${team.captain}`" class="btn btn-primary">2019 Stats</a>
+              <router-link class="btn btn-primary" :to="`/stats/${team.captain.split(' ').join('-')}`">2019 stats</router-link>
           </div>
         </div>
       

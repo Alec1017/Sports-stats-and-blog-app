@@ -39,7 +39,6 @@
         axios.get(this.$api + '/standings')
           .then((res) => {
             this.teams = res.data;
-            console.log(this.teams);
           })
           .catch((error) => {
             console.error(error);
