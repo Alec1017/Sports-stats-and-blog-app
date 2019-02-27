@@ -3,22 +3,20 @@
       <div class="standings__inner col-md-8 text-center">
           <h1>Standings <small>2019 Season</small></h1>
           <table class="standings__table table table-striped table-bordered">
-              <thead>
-                  <tr>
-                      <th scope="col" class="text-center">Captain</th>
-                      <th scope="col" class="text-center">Record</th>
-                      <th scope="col" class="text-center">plus/minus</th>
-                  </tr>
-              </thead>
-              <body>
-          
-                  <tr v-for="team in teams">
-                      <td>{{ team.captain }}</td>
-                      <td>{{ team.wins }}-{{ team.losses }}</td>
-                      <td>{{ team.differential }}</td>
-                  </tr>
-               
-              </body>
+            <thead>
+              <tr>
+                <th>Captain</th>
+                <th>Record</th>
+                <th>plus/minus</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="team in teams">
+                <td>{{ team.captain }}</td>
+                <td>{{ team.wins }}-{{ team.losses }}</td>
+                <td>{{ team.differential }}</td>
+              </tr>
+            </tbody>
           </table>
       </div>
   </div>
