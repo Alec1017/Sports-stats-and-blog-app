@@ -47,16 +47,21 @@ def players():
     return json_util.dumps(teams)
 
 
-
+@app.route('/api/stats/<string:captain>')
+def stats(captain):
+    captain = ' '.join(captain.split('-'))
+    team = mongo.db.teams.find_one({'captain': captain})
+    #return render_template('stats.html', team=team)
+    return json_util.dumps(team)
 
 ##################################################
 
 
 
-@app.route('/stats/<string:captain>')
-def stats(captain):
-    team = mongo.db.teams.find_one({'captain': captain})
-    return render_template('stats.html', team=team)
+# @app.route('/stats/<string:captain>')
+# def stats(captain):
+#     team = mongo.db.teams.find_one({'captain': captain})
+#     return render_template('stats.html', team=team)
 
 
 @app.route('/dashboard')

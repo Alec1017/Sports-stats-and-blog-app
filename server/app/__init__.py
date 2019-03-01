@@ -2,6 +2,9 @@ from flask import Flask
 from flask_pymongo import PyMongo
 from flask_cors import CORS
 
+from flask_sqlalchemy import SQLAlchemy
+from flask_graphql import GraphQLView
+
 from config import Config
 
 
@@ -17,4 +20,16 @@ CORS(app)
 # Create pymongo instance
 mongo = PyMongo(app)
 
+db = SQLAlchemy(app)
+
 from app import views
+from app.schema import schema
+
+app.add_url_rule(
+  '/graphql',
+  view_func=GraphQLView.as_view(
+    'graphql',
+    schema=schema,
+    graphiql=True
+  )
+)
