@@ -1,0 +1,16 @@
+.footer {
+  display: none;
+  height: 2rem;
+  width: 100%;
+  padding-top: 0.3rem;
+  background-color: -color(athens-gray);
+
+  &__text {
+    text-align: center;
+    margin: auto;
+  }
+
+  @include for-desktop-up {
+    display: block;
+  }
+}
