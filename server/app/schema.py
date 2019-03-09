@@ -1,13 +1,18 @@
 import graphene
-from graphene_sqlalchemy import SQLAlchemyConnectionField
+from app.models import FblPlayer
 
 from app import schema_fbl_player, schema_fbl_game
 
 
 class Query(graphene.ObjectType):
   node = graphene.relay.Node.Field()
-  all_fbl_players = SQLAlchemyConnectionField(schema_fbl_player.FblPlayerObject)
-  all_fbl_games = SQLAlchemyConnectionField(schema_fbl_game.FblGameObject)
+
+  all_fbl_players = graphene.List(schema_fbl_player.FblPlayerObject)
+  all_fbl_games = graphene.List(schema_fbl_game.FblGameObject)
+  
+  def resolve_all_fbl_players(self, info, **kwargs):
+    return FblPlayer.query.all()
+
   
 class Mutation(graphene.ObjectType):
   create_fbl_player = schema_fbl_player.CreateFblPlayer.Field()

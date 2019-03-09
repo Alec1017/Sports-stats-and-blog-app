@@ -11,10 +11,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="team in teams">
-                <td>{{ team.captain }}</td>
-                <td>{{ team.wins }}-{{ team.losses }}</td>
-                <td>{{ team.differential }}</td>
+              <tr v-for="player in players">
+                <td>{{ player.captain }}</td>
+                <td>{{ player.wins }}-{{ player.losses }}</td>
+                <td>{{ player.differential }}</td>
               </tr>
             </tbody>
           </table>
@@ -23,27 +23,22 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import { STANDINGS } from '../../data/graphql.js';
 
   export default {
     data() {
       return {
-        teams: []
+        players: []
       }
     },
-    created() {
-      this.getTeams();
-    },
-    methods: {
-      getTeams() {
-        axios.get(this.$api + '/standings')
-          .then((res) => {
-            this.teams = res.data;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }
+    apollo: {
+      players: {
+        query: STANDINGS,
+        update: function(data) {
+          return data.allFblPlayers.sort((a, b) => (a.wins < b.wins) ? 1 : (a.wins === b.wins)
+          ? ((a.differential < b.differential) ? 1 : -1) : -1); 
+        }
+      }   
     }
   }
 </script>
