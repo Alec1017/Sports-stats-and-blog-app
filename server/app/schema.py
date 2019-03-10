@@ -1,5 +1,5 @@
 import graphene
-from app.models import FblPlayer
+from app.models import FblPlayer, FblGame
 
 from app import schema_fbl_player, schema_fbl_game
 
@@ -12,6 +12,9 @@ class Query(graphene.ObjectType):
   
   def resolve_all_fbl_players(self, info, **kwargs):
     return FblPlayer.query.all()
+
+  def resolve_all_fbl_games(self, info, **kwargs):
+    return FblGame.query.all()
 
   
 class Mutation(graphene.ObjectType):
