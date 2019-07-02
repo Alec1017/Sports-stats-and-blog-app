@@ -31,13 +31,32 @@
         players: []
       }
     },
-    apollo: {
-      players: {
-        query: PLAYERS,
-        update: function(data) {
-          return data.allFblPlayers;
-        }
-      }   
+    methods: {
+      getContent() {
+        this.$prismic.client.query(
+          this.$prismic.Predicates.at('document.type', 'wbl_player')
+        ).then((document) => {
+          if (document) {
+            for (const doc of document.results) {
+              let player = {
+                captain: '', 
+                role: '',
+                description: '',
+                image: ''
+              }
+
+              player.captain = doc.data.captain[0].text;
+              player.role = doc.data.role[0].text;
+              player.description = doc.data.description[0].text;
+              player.image = doc.data.profile_picture.url;
+              this.players.push(player);
+            }
+          }
+        })
+      }
+    },
+    created() {
+      this.getContent();
     }
   }
 </script>

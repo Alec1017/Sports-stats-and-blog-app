@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueApollo from 'vue-apollo';
 import ApolloClient from 'apollo-boost';
+import PrismicVue from 'prismic-vue';
 
 import '../stylesheets/main.scss';
 
@@ -15,6 +16,9 @@ import Stats from './pages/Stats.vue';
 Vue.prototype.$api = 'http://localhost:5000/api';
 Vue.use(VueRouter);
 Vue.use(VueApollo);
+Vue.use(PrismicVue, {
+  endpoint: 'https://wbl-fbl-site.cdn.prismic.io/api/v2'
+});
 
 
 const apolloClient = new ApolloClient({

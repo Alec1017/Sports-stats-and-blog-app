@@ -44,12 +44,28 @@
     name: 'HomePage',
     data() {
       return {
+        fields: null,
         images: {
-          miniGolf: "https://upload.wikimedia.org/wikipedia/commons/b/ba/Mini_Golf_Tournament_Pic.jpg",
-          fblChamps: "https://upload.wikimedia.org/wikipedia/commons/0/0a/FBL_Champs.jpg",
-          wblChamps: "https://upload.wikimedia.org/wikipedia/commons/f/fd/WBL_Champs_Yard.jpg"
+          miniGolf: null,
+          fblChamps: null,
+          wblChamps: null
         }
       }
+    },
+    methods: {
+      getContent() {
+        this.$prismic.client.getByUID('homepage', 'homepage')
+          .then((document) => {
+            if (document) {
+              this.images.miniGolf = document.data.images[0].featured_image.url;
+              this.images.fblChamps = document.data.images[1].featured_image.url;
+              this.images.wblChamps = document.data.images[2].featured_image.url;
+            }
+          });
+      }
+    },
+    created() {
+      this.getContent();
     },
     components: {
       Footer
