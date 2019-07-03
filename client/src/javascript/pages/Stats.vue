@@ -19,7 +19,10 @@
       <div class="col-9">
         <ul class="nav nav-tabs">
           <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#stats">Stats</a>
+            <a class="nav-link active" data-toggle="tab" href="#hitting">Hitting</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#pitching">Pitching</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="tab" href="#analytics">Analytics</a>
@@ -28,31 +31,45 @@
 
         <!-- Content for the nav -->
        <div class="tab-content">
-          <div id="stats" class="tab-pane fade show active">
+          <div id="hitting" class="tab-pane fade show active">
             <table class="stats__table table table-striped table-bordered">
               <thead>
                   <tr>
-                      <th scope="col" class="text-center">Wins</th>
-                      <th scope="col" class="text-center">Losses</th>
-                      <th scope="col" class="text-center">completion %</th>
-                      <th scope="col" class="text-center">pass td</th>
-                      <th scope="col" class="text-center">thrown int</th>
-                      <th scope="col" class="text-center">receptions</th>
-                      <th scope="col" class="text-center">receiving td</th>
-                      <th scope="col" class="text-center">rushing td</th>
-                      <th scope="col" class="text-center">caught int</th>
-                      <th scope="col" class="text-center">sacks</th>
-                      <th scope="col" class="text-center">games played</th>
+                      <th scope="col" class="text-center">H</th>
+                      <th scope="col" class="text-center">AB</th>
+                      <th scope="col" class="text-center">1B</th>
+                      <th scope="col" class="text-center">2B</th>
+                      <th scope="col" class="text-center">3B</th>
+                      <th scope="col" class="text-center">HR</th>
+                      <th scope="col" class="text-center">HBP</th>
+                      <th scope="col" class="text-center">BB</th>
+                      <th scope="col" class="text-center">RBI</th>
+                      <th scope="col" class="text-center">K</th>
+                      <th scope="col" class="text-center">SB</th>
+                      <th scope="col" class="text-center">OUTS</th>
                   </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>{{ player.wins }}</td>
-                  <td>{{ player.losses }}</td>
+                  <td>{{ player.h }}</td>
+                  <td>{{ player.ab }}</td>
+                  <td>{{ player.one_b }}</td>
+                  <td>{{ player.two_b }}</td>
+                  <td>{{ player.three_b }}</td>
+                  <td>{{ player.hr }}</td>
+                  <td>{{ player.hbp }}</td>
+                  <td>{{ player.bb }}</td>
+                  <td>{{ player.rbi }}</td>
+                  <td>{{ player.k }}</td>
+                  <td>{{ player.sb }}</td>
+                  <td>{{ player.outs }}</td>
                   
                 </tr>
               </tbody>
           </table>
+          </div>
+          <div id="pitching" class="tab-pane fade">
+            <h3>Pitching coming soon to a theater near you</h3>
           </div>
           <div id="analytics" class="tab-pane fade">
             <h3>Coming soon to a theater near you</h3>

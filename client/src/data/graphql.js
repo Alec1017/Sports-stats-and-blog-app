@@ -31,6 +31,18 @@ export const GETWBLPLAYER = gql`
           debut
           awards
           championship_titles
+          h
+          ab
+          one_b
+          two_b
+          three_b
+          hr
+          hbp
+          bb
+          rbi
+          k
+          sb
+          outs
         }
       }
     }
