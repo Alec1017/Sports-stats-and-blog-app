@@ -25,6 +25,12 @@ export const GETWBLPLAYER = gql`
           losses
           batting_direction
           throw_direction
+          age
+          height
+          status
+          debut
+          awards
+          championship_titles
         }
       }
     }

@@ -2,18 +2,19 @@
   <div class="stats" v-if="playerExists">
     <div class="row">
       <div class="col-3">
-        <img class="stats__image card-img-top" :src="player.profile_picture.url" :alt="player.captain[0].text" height="215">
+        <img class="stats__image card-img-top" :src="player.profile_picture.url" :alt="player.captain[0].text">
       </div>
       <div class="col-9" style="padding-top: 3rem">
         <h1>{{ player.captain[0].text }}</h1>
-        <h4 style="color: gray">Bat: {{ player.batting_direction }} | Throw: {{ player.throw_direction }} | height | Age: 20</h4>
+        <h4 style="color: gray">Bat: {{player.batting_direction}} | Throw: {{player.throw_direction}} | height: {{player.height}}" | Age: {{player.age}}</h4>
       </div>
     </div>
     <div class="row">
       <div class="stats__bio col-3">
-        <h6>Status: <span style="color: gray">Active</span></h6>
-        <h6>Debut: <span style="color: gray">Some Date</span></h6>
-        <h6>Awards: <span style="color: gray">MVP</span></h6>
+        <h6>Status: <span style="color: gray">{{player.status}}</span></h6>
+        <h6>Debut: <span style="color: gray">{{player.debut}}</span></h6>
+        <h6>Awards: <span style="color: gray">{{player.awards}}</span></h6>
+        <h6>championships: <span style="color: gray">{{player.championship_titles}}</span></h6>
       </div>
       <div class="col-9">
         <ul class="nav nav-tabs">
