@@ -6,15 +6,15 @@
             <thead>
               <tr>
                 <th>Captain</th>
-                <th>Record</th>
-                <th>plus/minus</th>
+                <th>Wins</th>
+                <th>Losses</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="player in players">
-                <td>{{ player.captain }}</td>
-                <td>{{ player.wins }}-{{ player.losses }}</td>
-                <td>{{ player.differential }}</td>
+                <td>{{ player.captain[0].text }}</td>
+                <td>{{ player.wins }}</td>
+                <td>{{ player.losses }}</td>
               </tr>
             </tbody>
           </table>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-  import { STANDINGS } from '../../data/graphql.js';
+  import { WBLPLAYERS, cleanCollection } from '../../data/graphql.js';
 
   export default {
     data() {
@@ -33,10 +33,12 @@
     },
     apollo: {
       players: {
-        query: STANDINGS,
+        query: WBLPLAYERS,
         update: function(data) {
-          return data.allFblPlayers.sort((a, b) => (a.wins < b.wins) ? 1 : (a.wins === b.wins)
-          ? ((a.differential < b.differential) ? 1 : -1) : -1); 
+          let cleanedPlayers = cleanCollection(data.allWbl_players);
+
+          return cleanedPlayers.sort((a, b) => (a.wins < b.wins) ? 1 : (a.wins === b.wins)
+          ? ((a.losses > b.losses) ? 1 : -1) : -1); 
         }
       }   
     }

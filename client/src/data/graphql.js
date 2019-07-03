@@ -9,17 +9,43 @@ export const cleanCollection = (collection) => {
     return docs;
 }
 
+export const GETWBLPLAYER = gql`
+  query allWbl_players($uid: String!) {
+    allWbl_players(uid: $uid) {
+      edges {
+        node {
+          _meta {
+            uid
+          }
+          role
+          description
+          captain
+          profile_picture 
+          wins
+          losses
+          batting_direction
+          throw_direction
+        }
+      }
+    }
+  }
+`;
+
 
 export const WBLPLAYERS = gql`
   {
     allWbl_players {
       edges {
         node {
+          _meta {
+            uid
+          }
           role
           description
-          games_played
           captain
           profile_picture 
+          wins
+          losses
         }
       }
     }

@@ -1,12 +1,12 @@
 <template>
-  <div class="stats">
+  <div class="stats" v-if="playerExists">
     <div class="row">
       <div class="col-3">
-        <img class="stats__image card-img-top" :src="team.image" :alt="team.captain" height="215">
+        <img class="stats__image card-img-top" :src="player.profile_picture.url" :alt="player.captain[0].text" height="215">
       </div>
       <div class="col-9" style="padding-top: 3rem">
-        <h1>{{ team.captain }}</h1>
-        <h4 style="color: gray">Bat: R | Throw: R | height | Age: 20</h4>
+        <h1>{{ player.captain[0].text }}</h1>
+        <h4 style="color: gray">Bat: {{ player.batting_direction }} | Throw: {{ player.throw_direction }} | height | Age: 20</h4>
       </div>
     </div>
     <div class="row">
@@ -26,13 +26,13 @@
         </ul>
 
         <!-- Content for the nav -->
-        <div class="tab-content">
+       <div class="tab-content">
           <div id="stats" class="tab-pane fade show active">
             <table class="stats__table table table-striped table-bordered">
               <thead>
                   <tr>
-                      <th scope="col" class="text-center">completions</th>
-                      <th scope="col" class="text-center">attempts</th>
+                      <th scope="col" class="text-center">Wins</th>
+                      <th scope="col" class="text-center">Losses</th>
                       <th scope="col" class="text-center">completion %</th>
                       <th scope="col" class="text-center">pass td</th>
                       <th scope="col" class="text-center">thrown int</th>
@@ -46,17 +46,9 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>{{ team.completions }}</td>
-                  <td>{{ team.attempts }}</td>
-                  <td>{{ team.completionPercentage }}</td>
-                  <td>{{ team.passTouchdowns }}</td>
-                  <td>{{ team.thrownInterceptions }}</td>
-                  <td>{{ team.receptions }}</td>
-                  <td>{{ team.receivingTouchdowns }}</td>
-                  <td>{{ team.rushingTouchdowns }}</td>
-                  <td>{{ team.caughtInterceptions }}</td>
-                  <td>{{ team.sacks }}</td>
-                  <td>{{ team.gamesPlayed }}</td>
+                  <td>{{ player.wins }}</td>
+                  <td>{{ player.losses }}</td>
+                  
                 </tr>
               </tbody>
           </table>
@@ -66,32 +58,36 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </div> 
+  </div> 
 </template>
 
 <script>
-  import axios from 'axios';
+  import { GETWBLPLAYER, cleanCollection } from '../../data/graphql.js';
 
   export default {
     data() {
       return {
-        team: {}
+        uid: '',
+        player: null,
+        variables: {}
       }
     },
-    created() {
-      this.getTeam();
-    },
-    methods: {
-      getTeam() {
-        axios.get(this.$api + `/stats/${this.$route.params.player.split(' ').join('-')}`)
-          .then((res) => {
-            this.team = res.data;
-          })
-          .catch((error) => {
-            console.error(error);
-          });
+    computed: {
+      playerExists() {
+        return this.player;
       }
+    },
+    apollo: {
+      player: {
+        query: GETWBLPLAYER,
+        variables() {
+          return { uid: this.$route.params.player }
+        },
+        update: function(data) {
+          return cleanCollection(data.allWbl_players)[0];
+        }
+      }   
     }
   } 
 </script>

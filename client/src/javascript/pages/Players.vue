@@ -14,7 +14,7 @@
               <p class="players__card__text card-text"><b>{{ player.role[0].text }}</b><br/>{{ player.description[0].text }}</p>
           </div>
           <div class="players__card__footer card-footer">
-              <router-link class="btn btn-primary" :to="`/stats/${player.captain[0].text.split(' ').join('-').toLowerCase()}`">2019 stats</router-link>
+              <router-link class="btn btn-primary" :to="`/stats/${player._meta.uid}`">2019 stats</router-link>
           </div>
         </div>
       
