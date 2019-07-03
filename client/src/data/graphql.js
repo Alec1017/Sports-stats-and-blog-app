@@ -25,3 +25,13 @@ export const WBLPLAYERS = gql`
     }
   }
 `;
+
+export const HOMEPAGE = gql`
+  {
+    homepage(uid: "homepage", lang:"en-us") {
+      images {
+        featured_image
+      }
+    }
+  }
+`;

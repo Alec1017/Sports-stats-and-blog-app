@@ -4,22 +4,25 @@
       <div class="homepage__inner jumbotron text-center">
         <h1>Welcome to the WBL</h1>
         <div id="carousel" class="homepage__carousel carousel slide" data-ride="carousel">
-          <ol class="carousel-indicators">
+
+         <ol class="carousel-indicators">
             <li data-target="#carousel" data-slide-to="0" class="active"></li>
             <li data-target="#carousel" data-slide-to="1"></li>
             <li data-target="#carousel" data-slide-to="2"></li>
           </ol>
+
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img class="d-block w-100" :src="this.images.miniGolf" alt="First slide">
+              <img class="d-block w-100" :src="this.slideImages[0]" alt="First slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" :src="this.images.fblChamps" alt="Second slide">
+              <img class="d-block w-100" :src="this.slideImages[1]" alt="Second slide">
             </div>
             <div class="carousel-item">
-              <img class="d-block w-100" :src="this.images.wblChamps" alt="Third slide">
+              <img class="d-block w-100" :src="this.slideImages[2]" alt="Third slide">
             </div>
           </div>
+
           <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -39,34 +42,26 @@
 
 <script>
   import Footer from '../components/Footer.vue';
-  import { gql } from 'apollo-boost';
+  import { HOMEPAGE } from '../../data/graphql.js';
 
   export default {
     name: 'HomePage',
     data() {
       return {
-        fields: null,
-        images: {
-          miniGolf: null,
-          fblChamps: null,
-          wblChamps: null
+        slideImages: []
+      }
+    },
+    apollo: {
+      slideImages: {
+        query: HOMEPAGE,
+        update: function(data) {
+          let images = [];
+          for (const doc of data.homepage.images) {
+            images.push(doc.featured_image.url);
+          }
+          return images;
         }
-      }
-    },
-    methods: {
-      getContent() {
-        this.$prismic.client.getByUID('homepage', 'homepage')
-          .then((document) => {
-            if (document) {
-              this.images.miniGolf = document.data.images[0].featured_image.url;
-              this.images.fblChamps = document.data.images[1].featured_image.url;
-              this.images.wblChamps = document.data.images[2].featured_image.url;
-            }
-          });
-      }
-    },
-    created() {
-      this.getContent();
+      }   
     },
     components: {
       Footer
