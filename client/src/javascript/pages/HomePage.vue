@@ -39,6 +39,7 @@
 
 <script>
   import Footer from '../components/Footer.vue';
+  import { gql } from 'apollo-boost';
 
   export default {
     name: 'HomePage',

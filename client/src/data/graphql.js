@@ -1,23 +1,27 @@
 import gql from 'graphql-tag';
 
-export const PLAYERS = gql`
-  {
-    allFblPlayers {
-      captain
-      role
-      description
-      image
+// Removes edges and node from the structure
+export const cleanCollection = (collection) => {
+  let docs = [];
+    for (const doc of collection.edges) {
+      docs.push(doc.node);
     }
-  }
-`;
+    return docs;
+}
 
-export const STANDINGS = gql`
+
+export const WBLPLAYERS = gql`
   {
-    allFblPlayers {
-      captain
-      wins
-      losses
-      differential
+    allWbl_players {
+      edges {
+        node {
+          role
+          description
+          games_played
+          captain
+          profile_picture 
+        }
+      }
     }
   }
 `;

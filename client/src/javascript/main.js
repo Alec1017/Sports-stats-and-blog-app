@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueApollo from 'vue-apollo';
-import ApolloClient from 'apollo-boost';
-import PrismicVue from 'prismic-vue';
+import { ApolloClient } from 'apollo-boost';
+import { InMemoryCache } from 'apollo-boost';
+import { PrismicLink } from 'apollo-link-prismic';
 
 import '../stylesheets/main.scss';
 
@@ -13,16 +14,15 @@ import Players from './pages/Players.vue';
 import Standings from './pages/Standings.vue';
 import Stats from './pages/Stats.vue';
 
-Vue.prototype.$api = 'http://localhost:5000/api';
+
 Vue.use(VueRouter);
 Vue.use(VueApollo);
-Vue.use(PrismicVue, {
-  endpoint: 'https://wbl-fbl-site.cdn.prismic.io/api/v2'
-});
-
 
 const apolloClient = new ApolloClient({
-  uri: 'http://localhost:5000/graphql'
+  link: PrismicLink({
+    uri: 'https://wbl-fbl-site.prismic.io/graphql'
+  }),
+  cache: new InMemoryCache()
 });
 
 const apolloProvider = new VueApollo({
