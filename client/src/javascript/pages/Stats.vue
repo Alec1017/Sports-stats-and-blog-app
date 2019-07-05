@@ -63,7 +63,6 @@
                   <td>{{ player.k }}</td>
                   <td>{{ player.sb }}</td>
                   <td>{{ player.outs }}</td>
-                  
                 </tr>
               </tbody>
           </table>
@@ -77,6 +76,29 @@
         </div>
       </div>
     </div> 
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-9">
+        <table class="stats__table table table-striped table-bordered">
+              <thead>
+                  <tr>
+                      <th scope="col" class="text-center">AVG</th>
+                      <th scope="col" class="text-center">OBP</th>
+                      <th scope="col" class="text-center">SLG</th>
+                      <th scope="col" class="text-center">OPS</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td v-html="calcAVG"></td>
+                  <td v-html="calcOBP"></td>
+                  <td v-html="calcSLG"></td>
+                  <td v-html="calcOPS"></td>
+                </tr>
+              </tbody>
+          </table>
+      </div>
+    </div>
   </div> 
 </template>
 
@@ -94,6 +116,39 @@
     computed: {
       playerExists() {
         return this.player;
+      },
+      calcAVG() {
+        if (this.player.ab > 0) {
+          return this.player.h / this.player.ab;
+        } else {
+          return 'undefined';
+        }
+      },
+      calcOBP() {
+        const bases = this.player.h + this.player.bb + this.player.hbp;
+        const denom = this.player.ab + this.player.bb + this.player.hbp;
+
+        if (denom > 0) {
+          return bases / denom;
+        } else {
+          return 'Undefined';
+        }
+      },
+      calcSLG() {
+        const totalBases = this.player.one_b + (2 * this.player.two_b) + (3 * this.player.three_b) + (4 * this.player.hr);
+
+        if (this.player.ab > 0) {
+          return totalBases / this.player.ab;
+        } else {
+          return 'Undefined';
+        }
+      },
+      calcOPS() {
+        if (isNaN(this.calcOBP) || isNaN(this.calcOPS)) {
+          return 'Undefined';
+        } else {
+          return this.calcOBP + this.calcOPS;
+        }
       }
     },
     apollo: {
