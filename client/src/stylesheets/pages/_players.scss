@@ -5,6 +5,10 @@
     margin: 0 auto;
   }
 
+  &__image {
+    object-fit: cover;
+  }
+
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
