@@ -43,6 +43,14 @@ export const GETWBLPLAYER = gql`
           k
           sb
           outs
+          ip
+          er
+          r
+          pitching_k
+          pitching_bb
+          sv
+          pitching_wins
+          pitching_losses
         }
       }
     }

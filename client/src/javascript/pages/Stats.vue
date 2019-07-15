@@ -89,7 +89,34 @@
           </div>
 
           <div id="pitching" class="tab-pane fade">
-            <h3>Pitching coming soon to a theater near you</h3>
+            <table class="stats__table table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col" class="text-center">IP</th>
+                  <th scope="col" class="text-center">ER</th>
+                  <th scope="col" class="text-center">R</th>
+                  <th scope="col" class="text-center">K</th>
+                  <th scope="col" class="text-center">BB</th>
+                  <th scope="col" class="text-center">SV</th>
+                  <th scope="col" class="text-center">W</th>
+                  <th scope="col" class="text-center">L</th>
+                  <th scope="col" class="text-center">ERA</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ player.ip }}</td>
+                  <td>{{ player.er }}</td>
+                  <td>{{ player.r }}</td>
+                  <td>{{ player.pitching_k }}</td>
+                  <td>{{ player.pitching_bb }}</td>
+                  <td>{{ player.sv }}</td>
+                  <td>{{ player.pitching_wins }}</td>
+                  <td>{{ player.pitching_losses }}</td>
+                  <td v-html="calcERA"></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
           <div id="analytics" class="tab-pane fade">
             <h3>Coming soon to a theater near you</h3>
@@ -150,6 +177,14 @@
         } else {
           let ops = parseFloat(this.calcOBP) + parseFloat(this.calcSLG);
           return ops.toFixed(3);
+        }
+      },
+      calcERA() {
+        if (this.player.ip > 0) {
+          let era = 3 * this.player.er / this.player.ip;
+          return era.toFixed(2);
+        } else {
+          return 'Undefined';
         }
       }
     },
