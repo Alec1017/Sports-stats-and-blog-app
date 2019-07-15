@@ -1,0 +1,20 @@
+.navbar {
+  background-color: -color(athens-gray);
+
+  &__inner {
+    margin: 0 5rem;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 300px;
+    height: 300px;
+    svg {
+      background: none;
+    }
+  }
+}
