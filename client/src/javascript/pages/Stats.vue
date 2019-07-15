@@ -31,23 +31,24 @@
 
         <!-- Content for the nav -->
        <div class="tab-content">
+
           <div id="hitting" class="tab-pane fade show active">
             <table class="stats__table table table-striped table-bordered">
               <thead>
-                  <tr>
-                      <th scope="col" class="text-center">H</th>
-                      <th scope="col" class="text-center">AB</th>
-                      <th scope="col" class="text-center">1B</th>
-                      <th scope="col" class="text-center">2B</th>
-                      <th scope="col" class="text-center">3B</th>
-                      <th scope="col" class="text-center">HR</th>
-                      <th scope="col" class="text-center">HBP</th>
-                      <th scope="col" class="text-center">BB</th>
-                      <th scope="col" class="text-center">RBI</th>
-                      <th scope="col" class="text-center">K</th>
-                      <th scope="col" class="text-center">SB</th>
-                      <th scope="col" class="text-center">OUTS</th>
-                  </tr>
+                <tr>
+                  <th scope="col" class="text-center">H</th>
+                  <th scope="col" class="text-center">AB</th>
+                  <th scope="col" class="text-center">1B</th>
+                  <th scope="col" class="text-center">2B</th>
+                  <th scope="col" class="text-center">3B</th>
+                  <th scope="col" class="text-center">HR</th>
+                  <th scope="col" class="text-center">HBP</th>
+                  <th scope="col" class="text-center">BB</th>
+                  <th scope="col" class="text-center">RBI</th>
+                  <th scope="col" class="text-center">K</th>
+                  <th scope="col" class="text-center">SB</th>
+                  <th scope="col" class="text-center">OUTS</th>
+                </tr>
               </thead>
               <tbody>
                 <tr>
@@ -65,8 +66,28 @@
                   <td>{{ player.outs }}</td>
                 </tr>
               </tbody>
-          </table>
+            </table>
+
+            <table class="stats__table table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col" class="text-center">AVG</th>
+                        <th scope="col" class="text-center">OBP</th>
+                        <th scope="col" class="text-center">SLG</th>
+                        <th scope="col" class="text-center">OPS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td v-html="calcAVG"></td>
+                    <td v-html="calcOBP"></td>
+                    <td v-html="calcSLG"></td>
+                    <td v-html="calcOPS"></td>
+                  </tr>
+                </tbody>
+            </table>
           </div>
+
           <div id="pitching" class="tab-pane fade">
             <h3>Pitching coming soon to a theater near you</h3>
           </div>
@@ -76,29 +97,6 @@
         </div>
       </div>
     </div> 
-    <div class="row">
-      <div class="col-3"></div>
-      <div class="col-9">
-        <table class="stats__table table table-striped table-bordered">
-              <thead>
-                  <tr>
-                      <th scope="col" class="text-center">AVG</th>
-                      <th scope="col" class="text-center">OBP</th>
-                      <th scope="col" class="text-center">SLG</th>
-                      <th scope="col" class="text-center">OPS</th>
-                  </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td v-html="calcAVG"></td>
-                  <td v-html="calcOBP"></td>
-                  <td v-html="calcSLG"></td>
-                  <td v-html="calcOPS"></td>
-                </tr>
-              </tbody>
-          </table>
-      </div>
-    </div>
   </div> 
 </template>
 
@@ -119,7 +117,8 @@
       },
       calcAVG() {
         if (this.player.ab > 0) {
-          return this.player.h / this.player.ab;
+          let avg = this.player.h / this.player.ab;
+          return avg.toFixed(3);
         } else {
           return 'undefined';
         }
@@ -129,7 +128,8 @@
         const denom = this.player.ab + this.player.bb + this.player.hbp;
 
         if (denom > 0) {
-          return bases / denom;
+          let obp = bases / denom;
+          return obp.toFixed(3);
         } else {
           return 'Undefined';
         }
@@ -138,16 +138,18 @@
         const totalBases = this.player.one_b + (2 * this.player.two_b) + (3 * this.player.three_b) + (4 * this.player.hr);
 
         if (this.player.ab > 0) {
-          return totalBases / this.player.ab;
+          let slg = totalBases / this.player.ab;
+          return slg.toFixed(3);
         } else {
           return 'Undefined';
         }
       },
       calcOPS() {
-        if (isNaN(this.calcOBP) || isNaN(this.calcOPS)) {
+        if (isNaN(this.calcOBP) || isNaN(this.calcSLG)) {
           return 'Undefined';
         } else {
-          return this.calcOBP + this.calcOPS;
+          let ops = parseFloat(this.calcOBP) + parseFloat(this.calcSLG);
+          return ops.toFixed(3);
         }
       }
     },
