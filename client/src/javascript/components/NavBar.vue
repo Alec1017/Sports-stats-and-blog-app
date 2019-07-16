@@ -35,16 +35,8 @@
 
   <div class="navbar">
     <div class="navbar__inner">
+      <div class="navbar__logo">Logo</div>
       <ul class="navbar__list">
-      <li>
-          <div class="navbar__link">
-            <router-link to="/">
-              <div class="navbar__logo">
-                <LogoSVG />
-              </div>
-            </router-link>
-          </div>
-        </li>
         <li>
           <div class="navbar__link">
             <router-link to="/feed">Feed</router-link>
