@@ -35,7 +35,11 @@
 
   <div class="navbar">
     <div class="navbar__inner">
-      <div class="navbar__logo">Logo</div>
+      <div class="navbar__logo">WBL</div>
+      <input class="navbar__toggle" id="navbar-toggle" type="checkbox">
+      <label class="navbar__hamburger" for="navbar-toggle">
+        <span></span>
+      </label>
       <ul class="navbar__list">
         <li>
           <div class="navbar__link">

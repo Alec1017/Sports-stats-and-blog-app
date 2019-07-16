@@ -1,19 +1,70 @@
 .navbar {
-  background-color: -color(athens-gray);
+  background: -color(athens-gray);
   text-align: center;
   position: fixed;
   width: 100%;
   z-index: 999;
+  top: 0;
 
   &__inner {
-    //margin: 0 5rem;
+    margin: 1rem 0;
+  }
+
+  &__toggle {
+    display: none;
+  }
+
+  &__toggle:checked ~ &__list {
+   transform: scale(1, 1);
+
+   a {
+     opacity: 1;
+     transition: opacity 0.25s ease-in-out 0.2s;
+   }
+  }
+
+  &__hamburger {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 1rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    span, span::before, span::after {
+      display: block;
+      background: -color(black);
+      height: 2px;
+      width: 2rem;
+      border-radius: 2px;
+      position: relative;
+    }
+
+    span::before, span::after {
+      content: '';
+      position: absolute;
+    }
+
+    span::before {
+      bottom: 7px;
+    }
+
+    span::after {
+      top: 7px;
+    }
   }
 
   &__list {
+    background: -color(athens-gray);
     position: absolute;
     text-align: left;
     top: 100%;
     left: 0;
+    width: 100%;
+    transform: scale(1, 0);
+    transform-origin: top;
+    transition: transform 0.4s ease-in-out;
   }
 
   &__link {
@@ -21,21 +72,20 @@
     margin-left: 1rem;
 
     a {
+      @include font();
       color: -color(black);
       text-decoration: none;
-      @include font();
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.15s ease-in-out;
+
+      &:hover {
+        color: -color(white);
+      }
     }
   }
 
   &__logo {
-
+    @include font($weight: bold, $size: 1.7rem);
   }
-
-  // &__logo {
-  //   width: 190px;
-  //   height: 68px;
-  //   svg {
-  //     background: none;
-  //   }
-  // }
 }
