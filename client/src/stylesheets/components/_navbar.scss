@@ -89,6 +89,14 @@
     }
   }
 
+  &__link--twitter_logo {
+    display: none;
+  }
+
+  &__link--twitter_text {
+    display: block;
+  }
+
   &__logo {
     a {
       @include font($weight: bold, $size: 1.7rem);
@@ -150,6 +158,14 @@
           transform: scale(1, 1);
         }
       }
+    }
+
+    &__link--twitter_logo {
+      display: block;
+    }
+  
+    &__link--twitter_text {
+      display: none;
     }
   }
 }
