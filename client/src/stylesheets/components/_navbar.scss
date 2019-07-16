@@ -1,5 +1,5 @@
 .navbar {
-  background: -color(athens-gray);
+  background: -color(mine-shaft);
   text-align: center;
   position: fixed;
   width: 100%;
@@ -32,9 +32,13 @@
     display: flex;
     align-items: center;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     span, span::before, span::after {
       display: block;
-      background: -color(black);
+      background: -color(white);
       height: 2px;
       width: 2rem;
       border-radius: 2px;
@@ -56,7 +60,7 @@
   }
 
   &__list {
-    background: -color(athens-gray);
+    background: -color(mine-shaft);
     position: absolute;
     text-align: left;
     top: 100%;
@@ -72,8 +76,8 @@
     margin-left: 1rem;
 
     a {
-      @include font();
-      color: -color(black);
+      @include font($size: 1rem);
+      color: -color(white);
       text-decoration: none;
       text-transform: uppercase;
       opacity: 0;
@@ -86,6 +90,66 @@
   }
 
   &__logo {
-    @include font($weight: bold, $size: 1.7rem);
+    a {
+      @include font($weight: bold, $size: 1.7rem);
+      color: -color(white);
+      text-decoration: none;
+    }
+  }
+
+  @include for-tablet-landscape-up {
+    &__hamburger {
+      display: none;
+    }
+
+    &__inner {
+      display: grid;
+      grid-template-columns: 5% auto minmax(600px, 3fr) 5%;
+    }
+
+    &__logo {
+      grid-column: 2 / 3;
+    }
+
+    &__list {
+      // Unset mobile styles
+      position: relative;
+      transform: none;
+      background: none;
+      top: 0;
+
+      display: flex;
+      justify-content: flex-end;
+      align-items:center;
+      grid-column: 3 / 4;
+      overflow: visible;
+    }
+
+    &__link {
+      margin-bottom: 0;
+      margin-left: 2rem;
+
+      a {
+        opacity: 1;
+        position: relative;
+
+        &::before {
+          content:'';
+          display: block;
+          height: 5px;
+          background: white;
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: -0.75rem;
+          transform: scale(0, 1);
+          transition: transform ease-in-out 0.25s;
+        }
+
+        &:hover::before {
+          transform: scale(1, 1);
+        }
+      }
+    }
   }
 }
