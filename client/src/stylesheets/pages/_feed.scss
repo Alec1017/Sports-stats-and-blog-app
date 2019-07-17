@@ -1,3 +1,21 @@
 .feed {
-  padding: 0 5rem;
+  margin-top: 3.8rem;
+
+  @include for-phone-landscape-up {
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+  }
+
+  @include for-tablet-landscape-up {
+    width: 64%;
+    margin-left: 18%;
+    margin-right: 18%;
+  }
+
+  @include for-desktop-up {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+  }
 }

@@ -1,7 +1,7 @@
 <template>
 <div class="container">
   <div class="feed tweets">
-    <a class="feed__timeline twitter-timeline" href="https://twitter.com/FBLWBL2019?ref_src=twsrc%5Etfw">Tweets by FBLWBL2019</a>
+    <a class="feed__timeline twitter-timeline" href="https://twitter.com/FBLWBL2019?ref_src=twsrc%5Etfw" data-chrome="nofooter noborders">Tweets by FBLWBL2019</a>
   </div>
 </div>
 </template>
