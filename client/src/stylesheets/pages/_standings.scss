@@ -1,11 +1,88 @@
 .standings {
+  margin-top: 3.8rem;
 
-  &__inner {
-    float: none;
-    margin: 0 auto;
+  &__heading {
+    padding: 1.5rem 0;
+  }
+
+  &__title {
+    @include font($weight: bold, $size: 2rem);
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    color: -color(black);
+
+    &::before {
+      content:'';
+      display: block;
+      height: 5px;
+      width: 11rem;
+      background: -color(black);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -0.75rem;
+    }
   }
 
   &__table {
-    margin-top: 20px;
+    @include font($size: 1rem);
+    margin: 2rem 0;
+    width: 100%;
+    min-width: 25rem;
+    overflow: hidden;
+  }
+
+  &__head {
+    tr {
+      @include font($weight: bold, $size: 1rem);
+      background-color: -color(royal);
+      color: -color(white);
+      text-align: left;
+    }
+  }
+
+  &__body {
+    tr {
+      border-bottom: 1px solid -color(alto);
+
+      &:nth-of-type(even) {
+        background-color: -color(concrete);
+      }
+
+      &:last-of-type {
+        border-bottom: 2px solid -color(royal);
+      }
+    }
+  }
+
+  &__row {
+    th, td {
+      padding: 1rem 0.8rem;
+    }
+  }
+
+  @include for-phone-landscape-up {
+    &__table {
+      border-radius: 0.5rem 0.5rem 0 0;
+      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+      width: 70%;
+      margin-right: 15%;
+      margin-left: 15%;
+    }
+  }
+
+  @include for-tablet-landscape-up {
+    &__heading {
+      padding: 3rem 0;
+    }
+  }
+
+  @include for-desktop-up {
+    &__table {
+      width: 50%;
+      margin-right: 25%;
+      margin-left: 25%;
+    }
   }
 }

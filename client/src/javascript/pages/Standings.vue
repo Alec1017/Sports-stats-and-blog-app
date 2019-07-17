@@ -1,24 +1,27 @@
 <template>
-  <div class="standings row">
-      <div class="standings__inner col-md-8 text-center">
-          <h1>Standings <small>2019 Season</small></h1>
-          <table class="standings__table table table-striped table-bordered">
-            <thead>
-              <tr>
-                <th>Captain</th>
-                <th>Wins</th>
-                <th>Losses</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="player in players">
-                <td>{{ player.captain[0].text }}</td>
-                <td>{{ player.wins }}</td>
-                <td>{{ player.losses }}</td>
-              </tr>
-            </tbody>
-          </table>
-      </div>
+  <div class="standings">
+      
+    <div class="standings__heading">
+      <div class="standings__title">Standings</div>
+    </div>
+
+    <table class="standings__table">
+      <thead class="standings__head">
+        <tr class="standings__row">
+          <th>Captain</th>
+          <th>Wins</th>
+          <th>Losses</th>
+        </tr>
+      </thead>
+      <tbody class="standings__body">
+        <tr class="standings__row" v-for="player in players">
+          <td>{{ player.captain[0].text }}</td>
+          <td>{{ player.wins }}</td>
+          <td>{{ player.losses }}</td>
+        </tr>
+      </tbody>
+    </table>
+    
   </div>
 </template>
 

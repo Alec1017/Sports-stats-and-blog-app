@@ -53,7 +53,7 @@
   align-items: center;
   justify-content: center;
   margin: 2rem 0;
-  background: #ebeef8;
+  background: -color(white-lilac);
 
   &__image {
     width: 100%;
@@ -68,23 +68,23 @@
 
   &__role {
     @include font($size: 1rem);
-    color: #777;
+    color: -color(boulder);
     margin-bottom: 1rem;
   }
 
   &__description {
     @include font($size: 1rem, $weight: medium);
     margin-top: 1rem;
-    color: #333;
+    color: -color(dune);
     text-align: center;
     padding: 0 1rem;
     min-height: 4rem;
   }
 
   &__button {
-    padding: 0.8rem 2rem;
-    background-color: #4459e3;
     @include font($weight: bold, $size: 0.9rem);
+    padding: 0.8rem 2rem;
+    background-color: -color(royal);
     border-radius: 1.5rem;
     margin: 1rem 0;
     text-transform: uppercase;
@@ -93,7 +93,7 @@
     transition: background-color 0.15s ease-in-out;
 
     &:hover {
-      background-color: #212c74;
+      background-color: -color(lucky-point);
     }
   }
 
@@ -116,8 +116,7 @@
     border-radius: 1rem;
 
     &__image {
-      border-top-left-radius: 1rem;
-      border-top-right-radius: 1rem;
+      border-radius: 1rem 1rem 0 0;
     }
   }
 
@@ -127,13 +126,13 @@
 }
 
 .fa-facebook-square {
-  color: #3b5999;
+  color: -color(chambray);
 }
 
 .fa-twitter-square {
-  color: #55acee;
+  color: -color(picton);
 }
 
 .fa-instagram {
-  color: #e6683c;
+  color: -color(burnt-sienna);
 }
