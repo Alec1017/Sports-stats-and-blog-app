@@ -2,6 +2,10 @@
   @media (max-width: 599px) { @content; }
 }
 
+@mixin for-phone-landscape-up {
+  @media (min-width: 600px) { @content; }
+}
+
 @mixin for-tablet-portrait-up {
   @media (min-width: 750px) { @content; }
 }

@@ -1,24 +1,139 @@
 .players {
+  margin-top: 3.8rem;
 
-  &__title {
-    float: none;
-    margin: 0 auto;
+  &__heading {
+    padding: 1.5rem 0;
   }
 
-  &__image {
-    object-fit: cover;
+  &__title {
+    @include font($weight: bold, $size: 2rem);
+    text-transform: uppercase;
+    text-align: center;
+    position: relative;
+    color: -color(black);
+
+    &::before {
+      content:'';
+      display: block;
+      height: 5px;
+      width: 8.4rem;
+      background: -color(black);
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -0.75rem;
+    }
   }
 
   &__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
   }
 
-  &__player {
-    width: 18rem;
-    height: 28rem;
-    float: none;
-    margin: 0 auto;
+  @include for-tablet-landscape-up {
+    &__heading {
+      padding: 3rem 0;
+    }
+
+    &__grid {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
   }
+}
+
+.card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  background: #ebeef8;
+
+  &__image {
+    width: 100%;
+    height: 26rem;
+    object-fit: cover;
+  }
+
+  &__title {
+    @include font($weight: bold, $size: 2rem);
+    margin: 1rem 0;
+  }
+
+  &__role {
+    @include font($size: 1rem);
+    color: #777;
+    margin-bottom: 1rem;
+  }
+
+  &__description {
+    @include font($size: 1rem, $weight: medium);
+    margin-top: 1rem;
+    color: #333;
+    text-align: center;
+    padding: 0 1rem;
+    min-height: 4rem;
+  }
+
+  &__button {
+    padding: 0.8rem 2rem;
+    background-color: #4459e3;
+    @include font($weight: bold, $size: 0.9rem);
+    border-radius: 1.5rem;
+    margin: 1rem 0;
+    text-transform: uppercase;
+    color: -color(white);
+    text-decoration: none;
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover {
+      background-color: #212c74;
+    }
+  }
+
+  &__social_media {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+    i {
+      font-size: 2.5rem;
+    }
+  }
+
+  @include for-phone-landscape-up {
+    width: 23rem;
+    box-shadow: 0.5rem 0.5rem 3rem rgba(0, 0, 0, 0.2);
+    border-radius: 1rem;
+
+    &__image {
+      border-top-left-radius: 1rem;
+      border-top-right-radius: 1rem;
+    }
+  }
+
+  @include for-tablet-landscape-up {
+    margin: 2rem;
+  }
+}
+
+.fa-facebook-square {
+  color: #3b5999;
+}
+
+.fa-twitter-square {
+  color: #55acee;
+}
+
+.fa-instagram {
+  color: #e6683c;
 }
