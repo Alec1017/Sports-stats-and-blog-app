@@ -1,46 +1,50 @@
 <template>
   <div class="homepage">
-    <div class="homepage__wrapper container">
-      <div class="homepage__inner jumbotron text-center">
-        <h1>Welcome to the WBL</h1>
-        <div id="carousel" class="homepage__carousel carousel slide" data-ride="carousel">
-
-         <ol class="carousel-indicators">
-            <li data-target="#carousel" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel" data-slide-to="1"></li>
-            <li data-target="#carousel" data-slide-to="2"></li>
-          </ol>
-
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img class="d-block w-100" :src="this.slideImages[0]" alt="First slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" :src="this.slideImages[1]" alt="Second slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" :src="this.slideImages[2]" alt="Third slide">
-            </div>
-          </div>
-
-          <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div> 
+    <div class="homepage__hero">
+      <div class="homepage__content"> 
+        <div class="homepage__title">Welcome to the official WBL website</div>
+        <router-link class="homepage__button" to="/players">See our members</router-link>
+      </div>
     </div>
 
-    <Footer />
+    <div class="about">
+      <div class="about__textbox">
+        <div class="about__title">Who we are</div>
+        <div class="about__text about__text--first">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pellentesque lorem ornare felis luctus, at cursus lorem faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris interdum a ex in euismod. Quisque ultrices aliquet eros, fermentum dignissim enim tempus ornare.</div>
+        <div class="about__text about__text--second">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pellentesque lorem ornare felis luctus, at cursus lorem faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris interdum a ex in euismod. Quisque ultrices aliquet eros, fermentum dignissim enim tempus ornare.</div>
+      </div>
+    </div>
+
+    <div class="pictures">
+      <div class="pictures__title"></div>
+      <figure class="pictures__item" v-for="image in this.slideImages">
+        <img class="pictures__image" :src="image" />
+        <figcaption class="pictures__description"> 
+          <div class="pictures__title">project title</div>
+        </figcaption>
+      </figure>
+    </div>
+   
+   
+   
+   
+   
+   
+   
+   <!-- <Carousel class="carousel" :autoplay="true" :perPage="1" :autoplayTimeout="6000" :loop="true" :autoplayHoverPause="false" :paginationEnabled="false">
+      <Slide class="carousel__slide" v-for="slide in this.slideImages">
+        <img class="carousel__image" :src="slide">
+      </Slide>
+    </Carousel>
+
+    <Footer /> -->
 
   </div>
 </template>
 
 <script>
+  import {Carousel, Slide } from 'vue-carousel';
+
   import Footer from '../components/Footer.vue';
   import { HOMEPAGE } from '../../data/graphql.js';
 
@@ -64,6 +68,8 @@
       }   
     },
     components: {
+      Carousel,
+      Slide, 
       Footer
     }
   }
