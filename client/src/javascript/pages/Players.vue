@@ -12,9 +12,9 @@
           <div class="card__description">{{ player.description[0].text }}</div>
           <router-link class="card__button" :to="`/stats/${player._meta.uid}`">2019 stats</router-link>
           <ul class="card__social_media">
-            <li><a href="#"><i class="fab fa-facebook-square"></i></a></li>
-            <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
-            <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            <li><a :href="player.facebook[0].text"><i class="fab fa-facebook-square"></i></a></li>
+            <li><a :href="player.twitter[0].text"><i class="fab fa-twitter-square"></i></a></li>
+            <li><a :href="player.instagram[0].text"><i class="fab fa-instagram"></i></a></li>
           </ul>
         </div>
     </div>

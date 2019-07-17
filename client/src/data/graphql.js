@@ -72,6 +72,9 @@ export const WBLPLAYERS = gql`
           profile_picture 
           wins
           losses
+          facebook
+          twitter
+          instagram
         }
       }
     }
