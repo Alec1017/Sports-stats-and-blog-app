@@ -2,7 +2,7 @@
   margin-top: 3.8rem;
 
   &__heading {
-    padding: 1.5rem 0;
+    padding: 2rem 0 3rem 0;
   }
 
   &__title {
@@ -29,7 +29,7 @@
     @include font($weight: bold, $size: 1.2rem);
     text-align: left;
     padding-left: 0.4rem;
-    padding-bottom: 0.4rem;
+    padding-bottom: 0.6rem;
   }
 
   &__table {
@@ -95,6 +95,10 @@
     &__heading {
       padding: 3rem 0;
     }
+
+    &__division_title {
+      padding-top: 0;
+    }
   }
 
   @include for-desktop-up {
@@ -103,10 +107,6 @@
       width: 50%;
       margin-right: 25%;
       margin-left: 25%;
-    }
-
-    &__division_title {
-      padding-bottom: 0.6rem;
     }
 
     &__row {
