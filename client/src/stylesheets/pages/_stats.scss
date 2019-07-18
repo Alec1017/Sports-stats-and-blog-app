@@ -1,22 +1,29 @@
 .stats {
+  margin-top: 3.7rem;
 
-  &__image {
-    margin-top: 2rem;
-    object-fit: cover;
-    width: 15rem;
-    height: 20rem;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  &__name {
+    @include font($weight: bold, $size: 2rem);
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  &__info {
+    @include font();
+    text-align: center;
+    margin-top: 0.5rem;
+    color: -color(emperor);
   }
 
   &__bio {
-    margin-top: 1rem;
-    padding-left: 4rem;
+
   }
 
-  &__table {
-    margin-top: 1rem;
+  &__bio_data {
+    color: -color(emperor);
   }
 }
