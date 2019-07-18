@@ -84,9 +84,13 @@ export const WBLPLAYERS = gql`
 export const HOMEPAGE = gql`
   {
     homepage(uid: "homepage", lang:"en-us") {
+      about_section_one
+      about_section_two
       images {
         featured_image
+        caption
       }
+      livestream_link
     }
   }
 `;

@@ -10,17 +10,17 @@
     <div class="about">
       <div class="about__textbox">
         <div class="about__title">Who we are</div>
-        <div class="about__text about__text--first">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pellentesque lorem ornare felis luctus, at cursus lorem faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris interdum a ex in euismod. Quisque ultrices aliquet eros, fermentum dignissim enim tempus ornare.</div>
-        <div class="about__text about__text--second">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pellentesque lorem ornare felis luctus, at cursus lorem faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris interdum a ex in euismod. Quisque ultrices aliquet eros, fermentum dignissim enim tempus ornare.</div>
+        <div class="about__text about__text--first" v-html="this.about_section_one"></div>
+        <div class="about__text about__text--second" v-html="this.about_section_two"></div>
       </div>
     </div>
 
     <div class="pictures">
       <div class="pictures__title"></div>
       <figure class="pictures__item" v-for="image in this.featuredImages">
-        <img class="pictures__image" :src="image" />
+        <img class="pictures__image" :src="image.url" />
         <figcaption class="pictures__description"> 
-          <div class="pictures__title">project title</div>
+          <div class="pictures__title" v-html="image.caption"></div>
         </figcaption>
       </figure>
     </div>
@@ -28,7 +28,7 @@
     <div class="promo">
       <div class="promo__title">Like what you see?</div>
       <div class="promo__subtitle">Check out one of our livestreams!</div>
-      <a class="promo__button" href="https://www.pscp.tv/Wbl2018/1OyKApepPMyxb">Visit</a>
+      <a class="promo__button" :href="this.livestream_link">Visit</a>
     </div> 
   </div>
 </template>
@@ -40,7 +40,10 @@
     name: 'HomePage',
     data() {
       return {
-        featuredImages: []
+        about_section_one: '',
+        about_section_two: '',
+        featuredImages: [],
+        livestream_link: ''
       }
     },
     apollo: {
@@ -49,9 +52,30 @@
         update: function(data) {
           let images = [];
           for (const doc of data.homepage.images) {
-            images.push(doc.featured_image.url);
+            images.push({
+              url: doc.featured_image.url,
+              caption: doc.caption[0].text
+            });
           }
           return images;
+        }
+      },
+      about_section_one: {
+        query: HOMEPAGE,
+        update: function(data) {
+          return data.homepage.about_section_one[0].text;
+        }
+      },
+      about_section_two: {
+        query: HOMEPAGE,
+        update: function(data) {
+          return data.homepage.about_section_two[0].text;
+        }
+      },
+      livestream_link: {
+        query: HOMEPAGE,
+        update: function(data) {
+          return data.homepage.livestream_link[0].text;
         }
       }   
     }
