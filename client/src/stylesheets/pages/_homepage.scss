@@ -26,13 +26,13 @@
   }
 
   &__title {
-    @include font($weight: medium, $size: 2.5rem);
+    @include font($weight: medium, $size: 2rem);
     color: -color(white);
     margin-bottom: 2rem;
   }
 
   &__button {
-    @include font($size: 1.2rem);
+    @include font($size: 1rem);
     display: inline-block;
     text-decoration: none;
     text-transform: uppercase;
@@ -40,7 +40,7 @@
 
     border-width: 2px;
     border-style: solid;
-    padding: 0.8rem 1.5rem;
+    padding: 0.8rem 0.5rem;
     transition: all 0.15s ease-in-out;
 
     &:hover {
@@ -49,22 +49,112 @@
       border-color: -color(white);
     }
   }
+
+  @include for-phone-landscape-up {
+    &__title {
+      @include font($weight: medium, $size: 2.5rem);
+    }
+
+    &__button {
+      @include font($size: 1.2rem);
+      padding: 0.8rem 1.5rem;
+    }
+  }
 }
 
-// .carousel {
-//   width: 60%;
-//   margin-left: 20%;
-//   margin-right: 20%;
+.about {
+  padding-top: 1rem;
+  background-color: -color(mine-shaft);
 
-//   &__slide {
-//     width: 50rem;
-//     height: 50rem;
-//   }
+  &__textbox {
+    position: relative;
+    padding: 4rem;
+    color: -color(white);
+    outline: 2px solid -color(white);
+    outline-offset: -2.5rem;
+  }
 
-//   &__image {
-//     object-fit:cover;
-//     width: 100%;
-//     height: 100%;
-//     overflow: hidden;
-//   }
-// }
+  &__title {
+    @include font($weight: light, $size: 2.5rem);
+    position: absolute;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: -color(mine-shaft);
+    padding: 0 1rem;
+    min-width: 13rem;
+  }
+
+  &__text {
+    @include font($weight: light);
+    padding-top: 1rem;
+  }
+}
+
+.pictures {
+  &__item {
+    position: relative;
+
+    img {
+      display: block;
+    }
+  }
+
+  &__description {
+    @include font($weight: light);
+    position: absolute;
+    bottom: 0rem;
+    left: 0;
+    right: 0;
+    color: -color(white);
+    background: rgba(0, 0, 0, 0.75);
+    padding: 1.2rem;
+    display: none;
+  }
+
+  @include for-phone-landscape-up {
+    &__item {
+      width: 50%;
+      float: left;
+      height: 20rem;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    } 
+  }
+
+  @include for-tablet-landscape-up {
+    &__item {
+      height: 25rem;
+      overflow: hidden;
+
+      &:hover {
+        .pictures__description {
+          transform: translateY(0%);
+        }
+      }
+    }
+
+    &__description {
+      display: block;
+      transform: translateY(150%);
+      transition: all ease-in-out 0.25s;
+    }
+  }
+
+  @include for-desktop-up {
+    &__item {
+      width: 33.33334%;
+    }
+  }
+
+  @include for-big-desktop-up {
+    &__item {
+      height: 30rem;
+    }
+  }
+}
