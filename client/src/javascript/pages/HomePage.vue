@@ -17,46 +17,34 @@
 
     <div class="pictures">
       <div class="pictures__title"></div>
-      <figure class="pictures__item" v-for="image in this.slideImages">
+      <figure class="pictures__item" v-for="image in this.featuredImages">
         <img class="pictures__image" :src="image" />
         <figcaption class="pictures__description"> 
           <div class="pictures__title">project title</div>
         </figcaption>
       </figure>
     </div>
-   
-   
-   
-   
-   
-   
-   
-   <!-- <Carousel class="carousel" :autoplay="true" :perPage="1" :autoplayTimeout="6000" :loop="true" :autoplayHoverPause="false" :paginationEnabled="false">
-      <Slide class="carousel__slide" v-for="slide in this.slideImages">
-        <img class="carousel__image" :src="slide">
-      </Slide>
-    </Carousel>
 
-    <Footer /> -->
-
+    <div class="promo">
+      <div class="promo__title">Like what you see?</div>
+      <div class="promo__subtitle">Check out one of our livestreams!</div>
+      <a class="promo__button" href="https://www.pscp.tv/Wbl2018/1OyKApepPMyxb">Visit</a>
+    </div> 
   </div>
 </template>
 
 <script>
-  import {Carousel, Slide } from 'vue-carousel';
-
-  import Footer from '../components/Footer.vue';
   import { HOMEPAGE } from '../../data/graphql.js';
 
   export default {
     name: 'HomePage',
     data() {
       return {
-        slideImages: []
+        featuredImages: []
       }
     },
     apollo: {
-      slideImages: {
+      featuredImages: {
         query: HOMEPAGE,
         update: function(data) {
           let images = [];
@@ -66,11 +54,6 @@
           return images;
         }
       }   
-    },
-    components: {
-      Carousel,
-      Slide, 
-      Footer
     }
   }
 </script>

@@ -62,6 +62,14 @@
   }
 }
 
+.about::after, 
+.pictures::after,
+.promo::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
 .about {
   padding-top: 1rem;
   background-color: -color(mine-shaft);
@@ -88,6 +96,22 @@
   &__text {
     @include font($weight: light);
     padding-top: 1rem;
+  }
+
+  @include for-tablet-landscape-up {
+    padding: 0 5rem;
+  }
+
+  @include for-desktop-up {
+    padding: 0 15rem;
+  }
+
+  @include for-medium-desktop-up {
+    padding: 0 20rem;
+  }
+
+  @include for-big-desktop-up {
+    padding: 0 25rem;
   }
 }
 
@@ -155,6 +179,42 @@
   @include for-big-desktop-up {
     &__item {
       height: 30rem;
+    }
+  }
+}
+
+.promo {
+  background-color: -color(mine-shaft);
+  padding: 3rem 0;
+
+  &__title {
+    @include font($weight: bold, $size: 2rem);
+    padding-bottom: 0.8rem;
+    color: -color(white);
+  }
+
+  &__subtitle {
+    @include font($weight: light, $size: 2rem);
+    color: -color(white);
+    padding-bottom: 2rem;
+  }
+
+  &__button {
+    @include font($size: 1rem);
+    display: inline-block;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: -color(white);
+
+    border-width: 2px;
+    border-style: solid;
+    padding: 0.8rem 2.5rem;
+    transition: all 0.15s ease-in-out;
+
+    &:hover {
+      background-color: -color(white);
+      color: -color(black);
+      border-color: -color(white);
     }
   }
 }
