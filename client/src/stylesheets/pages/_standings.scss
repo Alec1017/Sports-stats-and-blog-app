@@ -25,9 +25,16 @@
     }
   }
 
+  &__division_title {
+    @include font($weight: bold, $size: 1.2rem);
+    text-align: left;
+    padding-left: 0.4rem;
+    padding-bottom: 0.4rem;
+  }
+
   &__table {
     @include font($size: 1rem);
-    margin: 2rem 0;
+    margin-bottom: 2.5rem;
     width: 100%;
     min-width: 20rem;
     overflow: hidden;
@@ -60,12 +67,24 @@
     th, td {
       padding: 1rem 0.8rem;
     }
+
+    td:first-child {
+      max-width: 5rem;
+    }
   }
 
   @include for-phone-landscape-up {
     &__table {
       border-radius: 0.5rem 0.5rem 0 0;
       box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
+    }
+
+    &__division_title {
+      padding-left: 0.6rem;
+    }
+
+    &__table, 
+    &__division_title {
       width: 70%;
       margin-right: 15%;
       margin-left: 15%;
@@ -79,10 +98,25 @@
   }
 
   @include for-desktop-up {
-    &__table {
+    &__table,
+    &__division_title {
       width: 50%;
       margin-right: 25%;
       margin-left: 25%;
+    }
+
+    &__division_title {
+      padding-bottom: 0.6rem;
+    }
+
+    &__row {
+      th, td {
+        padding: 1rem 0.8rem;
+      }
+  
+      td:first-child {
+        min-width: 12rem;
+      }
     }
   }
 }

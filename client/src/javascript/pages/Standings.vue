@@ -1,37 +1,51 @@
 <template>
-  <div class="standings">
+  <div class="standings" v-if="this.divisions">
       
     <div class="standings__heading">
       <div class="standings__title">Standings</div>
     </div>
 
-    <table class="standings__table">
-      <thead class="standings__head">
-        <tr class="standings__row">
-          <th>Captain</th>
-          <th>Wins</th>
-          <th>Losses</th>
-        </tr>
-      </thead>
-      <tbody class="standings__body">
-        <tr class="standings__row" v-for="player in players">
-          <td>{{ player.captain[0].text }}</td>
-          <td>{{ player.wins }}</td>
-          <td>{{ player.losses }}</td>
-        </tr>
-      </tbody>
-    </table>
-    
+    <div class="standings__division" v-for="division in this.divisions" >
+      <div class="standings__division_heading">
+        <div class="standings__division_title">Division {{ division }}</div>
+      </div>
+
+      <table class="standings__table">
+        <thead class="standings__head">
+          <tr class="standings__row">
+            <th>Captain</th>
+            <th>Wins</th>
+            <th>Losses</th>
+          </tr>
+        </thead>
+        <tbody class="standings__body">
+          <tr class="standings__row" v-for="player in filterByDivision(division)">
+            <td>{{ player.captain[0].text }}</td>
+            <td>{{ player.wins }}</td>
+            <td>{{ player.losses }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
   </div>
 </template>
 
 <script>
-  import { WBLPLAYERS, cleanCollection } from '../../data/graphql.js';
+  import { WBLPLAYERS, STANDINGS, cleanCollection } from '../../data/graphql.js';
 
   export default {
     data() {
       return {
-        players: []
+        players: [],
+        divisions: 0
+      }
+    },
+    methods: {
+      filterByDivision(division) {
+        return this.players.filter((player) => {
+          return player.division === division;
+        })
       }
     },
     apollo: {
@@ -42,6 +56,12 @@
 
           return cleanedPlayers.sort((a, b) => (a.wins < b.wins) ? 1 : (a.wins === b.wins)
           ? ((a.losses > b.losses) ? 1 : -1) : -1); 
+        }
+      },
+      divisions: {
+        query: STANDINGS,
+        update: function(data) {
+          return data.standings.divisions;
         }
       }   
     }

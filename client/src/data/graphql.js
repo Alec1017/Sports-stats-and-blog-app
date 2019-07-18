@@ -72,6 +72,7 @@ export const WBLPLAYERS = gql`
           profile_picture 
           wins
           losses
+          division
           facebook
           twitter
           instagram
@@ -91,6 +92,14 @@ export const HOMEPAGE = gql`
         caption
       }
       livestream_link
+    }
+  }
+`;
+
+export const STANDINGS = gql`
+  {
+    standings(uid: "standings", lang:"en-us") {
+      divisions
     }
   }
 `;
