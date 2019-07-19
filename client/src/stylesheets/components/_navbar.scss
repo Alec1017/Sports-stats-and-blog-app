@@ -15,7 +15,7 @@
     display: none;
   }
 
-  &__toggle:checked ~ &__list {
+  .isOpen {
    transform: scale(1, 1);
 
    a {
@@ -28,7 +28,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    margin-left: 1rem;
+    padding: 0 1rem;
     height: 100%;
     display: flex;
     align-items: center;
