@@ -32,58 +32,18 @@
     padding-bottom: 0.6rem;
   }
 
-  &__table {
-    @include font($size: 1rem);
-    margin-bottom: 2.5rem;
-    width: 100%;
-    min-width: 20rem;
-    overflow: hidden;
-  }
-
-  &__head {
-    tr {
-      @include font($weight: bold, $size: 1rem);
-      background-color: -color(royal);
-      color: -color(white);
-      text-align: left;
-    }
-  }
-
-  &__body {
-    tr {
-      border-bottom: 1px solid -color(alto);
-
-      &:nth-of-type(even) {
-        background-color: -color(concrete);
-      }
-
-      &:last-of-type {
-        border-bottom: 2px solid -color(royal);
-      }
-    }
-  }
 
   &__row {
-    th, td {
-      padding: 1rem 0.8rem;
-    }
-
     td:first-child {
       max-width: 5rem;
     }
   }
 
   @include for-phone-landscape-up {
-    &__table {
-      border-radius: 0.5rem 0.5rem 0 0;
-      box-shadow: 0 0 2rem rgba(0, 0, 0, 0.15);
-    }
-
     &__division_title {
       padding-left: 0.6rem;
     }
 
-    &__table, 
     &__division_title {
       width: 70%;
       margin-right: 15%;
@@ -102,7 +62,6 @@
   }
 
   @include for-desktop-up {
-    &__table,
     &__division_title {
       width: 50%;
       margin-right: 25%;
@@ -110,10 +69,6 @@
     }
 
     &__row {
-      th, td {
-        padding: 1rem 0.8rem;
-      }
-  
       td:first-child {
         min-width: 12rem;
       }

@@ -23,9 +23,9 @@
       <label class="tab__label" for="tab-analytics">Analytics</label>
 
       <div class="tab__content tab__content--hitting">
-        <table class="standings__table">
-          <thead class="standings__head">
-            <tr class="standings__row">
+        <table class="table">
+          <thead class="table__head">
+            <tr class="table__row">
               <th>H</th>
               <th>AB</th>
               <th>HR</th>
@@ -33,8 +33,8 @@
               <th>K</th>
             </tr>
           </thead>
-          <tbody class="standings__body">
-            <tr class="standings__row">
+          <tbody class="table__body">
+            <tr class="table__row">
               <td>{{ player.h }}</td>
               <td>{{ player.ab }}</td>
               <td>{{ player.k }}</td>
@@ -44,17 +44,17 @@
           </tbody>
         </table>
 
-        <table class="standings__table">
-          <thead class="standings__head">
-            <tr class="standings__row">
+        <table class="table">
+          <thead class="table__head">
+            <tr class="table__row">
               <th>AVG</th>
               <th>OBP</th>
               <th>SLG</th>
               <th>OPS</th>
             </tr>
           </thead>
-          <tbody class="standings__body">
-            <tr class="standings__row">
+          <tbody class="table__body">
+            <tr class="table__row">
               <td v-html="calcAVG"></td>
               <td v-html="calcOBP"></td>
               <td v-html="calcSLG"></td>
@@ -65,9 +65,9 @@
       </div>
 
       <div class="tab__content tab__content--pitching">
-        <table class="standings__table">
-          <thead class="standings__head">
-            <tr class="standings__row">
+        <table class="table">
+          <thead class="table__head">
+            <tr class="table__row">
               <th>IP</th>
               <th>ER</th>
               <th>R</th>
@@ -75,8 +75,8 @@
               <th>BB</th>
             </tr>
           </thead>
-          <tbody class="standings__body">
-            <tr class="standings__row">
+          <tbody class="table__body">
+            <tr class="table__row">
               <td>{{ player.ip }}</td>
               <td>{{ player.er }}</td>
               <td>{{ player.r }}</td>
@@ -86,17 +86,17 @@
           </tbody>
         </table>
 
-        <table class="standings__table">
-          <thead class="standings__head">
-            <tr class="standings__row">
+        <table class="table">
+          <thead class="table__head">
+            <tr class="table__row">
               <th>ERA</th>
               <th>W</th>
               <th>L</th>
               <th>SV</th>
             </tr>
           </thead>
-          <tbody class="standings__body">
-            <tr class="standings__row">
+          <tbody class="table__body">
+            <tr class="table__row">
               <td v-html="calcERA"></td>
               <td>{{ player.pitching_wins }}</td>
               <td>{{ player.pitching_losses }}</td>

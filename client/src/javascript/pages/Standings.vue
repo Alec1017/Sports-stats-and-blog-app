@@ -10,16 +10,16 @@
         <div class="standings__division_title">Division {{ division }}</div>
       </div>
 
-      <table class="standings__table">
-        <thead class="standings__head">
-          <tr class="standings__row">
+      <table class="table">
+        <thead class="table__head">
+          <tr class="table__row standings__row">
             <th>Captain</th>
             <th>Wins</th>
             <th>Losses</th>
           </tr>
         </thead>
-        <tbody class="standings__body">
-          <tr class="standings__row" v-for="player in filterByDivision(division)">
+        <tbody class="table__body">
+          <tr class="table__row standings__row" v-for="player in filterByDivision(division)">
             <td>{{ player.captain[0].text }}</td>
             <td>{{ player.wins }}</td>
             <td>{{ player.losses }}</td>
