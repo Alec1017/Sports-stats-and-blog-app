@@ -46,6 +46,13 @@
     border-top: 1px solid -color(casper);
   }
 
+  &__content--analytics {
+    @include font($weight: bold);
+    padding: 8.5rem 0;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
   &__input {
     display: none;
 
@@ -58,7 +65,8 @@
   }
 
   &__input--hitting:checked ~ .tab__content--hitting,
-  &__input--pitching:checked ~ .tab__content--pitching {
+  &__input--pitching:checked ~ .tab__content--pitching,
+  &__input--analytics:checked ~ .tab__content--analytics {
     display: block;
   }
 
@@ -66,7 +74,7 @@
     @include font($weight: bold, $size: 0.9rem);
     display: inline-block;
     margin: 0 0 -1px;
-    padding: 1rem 1.5rem;
+    padding: 1rem 1rem;
     text-align: center;
     color: #abc;
     border: 1px solid transparent;

@@ -19,8 +19,96 @@
       <input class="tab__input tab__input--pitching" id="tab-pitching" type="radio" name="tabs">
       <label class="tab__label" for="tab-pitching">Pitching</label>
 
-      <div class="tab__content tab__content--hitting">Hitting coming soon to a theater near you</div>
-      <div class="tab__content tab__content--pitching">Pitching coming soon to a theater near you</div>
+      <input class="tab__input tab__input--analytics" id="tab-analytics" type="radio" name="tabs">
+      <label class="tab__label" for="tab-analytics">Analytics</label>
+
+      <div class="tab__content tab__content--hitting">
+        <table class="standings__table">
+          <thead class="standings__head">
+            <tr class="standings__row">
+              <th>H</th>
+              <th>AB</th>
+              <th>HR</th>
+              <th>RBI</th>
+              <th>K</th>
+            </tr>
+          </thead>
+          <tbody class="standings__body">
+            <tr class="standings__row">
+              <td>{{ player.h }}</td>
+              <td>{{ player.ab }}</td>
+              <td>{{ player.k }}</td>
+              <td>{{ player.hr }}</td>
+              <td>{{ player.rbi }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="standings__table">
+          <thead class="standings__head">
+            <tr class="standings__row">
+              <th>AVG</th>
+              <th>OBP</th>
+              <th>SLG</th>
+              <th>OPS</th>
+            </tr>
+          </thead>
+          <tbody class="standings__body">
+            <tr class="standings__row">
+              <td v-html="calcAVG"></td>
+              <td v-html="calcOBP"></td>
+              <td v-html="calcSLG"></td>
+              <td v-html="calcOPS"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab__content tab__content--pitching">
+        <table class="standings__table">
+          <thead class="standings__head">
+            <tr class="standings__row">
+              <th>IP</th>
+              <th>ER</th>
+              <th>R</th>
+              <th>K</th>
+              <th>BB</th>
+            </tr>
+          </thead>
+          <tbody class="standings__body">
+            <tr class="standings__row">
+              <td>{{ player.ip }}</td>
+              <td>{{ player.er }}</td>
+              <td>{{ player.r }}</td>
+              <td>{{ player.pitching_k }}</td>
+              <td>{{ player.pitching_bb }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class="standings__table">
+          <thead class="standings__head">
+            <tr class="standings__row">
+              <th>ERA</th>
+              <th>W</th>
+              <th>L</th>
+              <th>SV</th>
+            </tr>
+          </thead>
+          <tbody class="standings__body">
+            <tr class="standings__row">
+              <td v-html="calcERA"></td>
+              <td>{{ player.pitching_wins }}</td>
+              <td>{{ player.pitching_losses }}</td>
+              <td>{{ player.sv }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tab__content tab__content--analytics">
+        Analytics will becoming soon!
+      </div>
     </div>
      
 
