@@ -15,15 +15,66 @@
   &__info {
     @include font();
     text-align: center;
-    margin-top: 0.5rem;
+    margin: 0.5rem 0 1rem 0;
     color: -color(emperor);
   }
 
   &__bio {
+    border-top: 2px solid -color(royal);
+    padding: 1.5rem 0;
+    margin: 0 1rem;
+    
+  }
 
+  &__bio_category {
+    @include font($weight: medium, $size: 1.4rem);
+    padding-bottom: 0.3rem;
   }
 
   &__bio_data {
+    @include font($size: 1.2rem);
     color: -color(emperor);
+  }
+}
+
+.tab {
+  padding: 0 1rem;
+
+  &__content {
+    display: none;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid -color(casper);
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + .tab__label {
+      color: -color(royal);
+      border: 1px solid -color(casper);
+      border-top: 2px solid -color(royal);
+      border-bottom: 1px solid -color(white);
+    }
+  }
+
+  &__input--hitting:checked ~ .tab__content--hitting,
+  &__input--pitching:checked ~ .tab__content--pitching {
+    display: block;
+  }
+
+  &__label {
+    @include font($weight: bold, $size: 0.9rem);
+    display: inline-block;
+    margin: 0 0 -1px;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    color: #abc;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #789;
+      cursor: pointer;
+    }
   }
 }

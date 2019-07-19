@@ -6,11 +6,22 @@
     <div class="stats__info">Bat: {{player.batting_direction}} | Throw: {{player.throw_direction}} | height: {{player.height}}" | Age: {{player.age}}</div>
 
     <div class="stats__bio">
-        <div>Status: <span style="color: gray">{{player.status}}</span></div>
-        <div>Debut: <span style="color: gray">{{player.debut}}</span></div>
-        <div>Awards: <span style="color: gray">{{player.awards}}</span></div>
-        <div>championships: <span style="color: gray">{{player.championship_titles}}</span></div>
-      </div>
+      <div class="stats__bio_category">Status: <span class="stats__bio_data">{{player.status}}</span></div>
+      <div class="stats__bio_category">Debut: <span class="stats__bio_data">{{ parseInt(player.debut)}}</span></div>
+      <div class="stats__bio_category">Awards: <span class="stats__bio_data">{{player.awards}}</span></div>
+      <div class="stats__bio_category">championships: <span class="stats__bio_data">{{player.championship_titles}}</span></div>
+    </div>
+
+    <div class="tab">
+      <input class="tab__input tab__input--hitting" id="tab-hitting" type="radio" name="tabs" checked>
+      <label class="tab__label" for="tab-hitting">Hitting</label>
+
+      <input class="tab__input tab__input--pitching" id="tab-pitching" type="radio" name="tabs">
+      <label class="tab__label" for="tab-pitching">Pitching</label>
+
+      <div class="tab__content tab__content--hitting">Hitting coming soon to a theater near you</div>
+      <div class="tab__content tab__content--pitching">Pitching coming soon to a theater near you</div>
+    </div>
      
 
 
