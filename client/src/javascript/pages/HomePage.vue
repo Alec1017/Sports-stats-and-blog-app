@@ -1,6 +1,9 @@
 <template>
   <div class="homepage">
     <div class="homepage__hero">
+      <div class="homepage__background">
+        <img :src="this.background">
+      </div>
       <div class="homepage__content"> 
         <div class="homepage__title">Welcome to the official WBL website</div>
         <router-link class="homepage__button" to="/players">See our members</router-link>
@@ -43,7 +46,8 @@
         about_section_one: '',
         about_section_two: '',
         featuredImages: [],
-        livestream_link: ''
+        livestream_link: '',
+        background: ''
       }
     },
     apollo: {
@@ -58,6 +62,12 @@
             });
           }
           return images;
+        }
+      },
+      background: {
+        query: HOMEPAGE,
+        update: function(data) {
+          return data.homepage.background.url;
         }
       },
       about_section_one: {

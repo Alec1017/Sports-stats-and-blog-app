@@ -92,6 +92,7 @@ export const HOMEPAGE = gql`
         caption
       }
       livestream_link
+      background
     }
   }
 `;
