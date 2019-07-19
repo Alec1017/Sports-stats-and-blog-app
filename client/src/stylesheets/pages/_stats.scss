@@ -3,6 +3,7 @@
 
   img {
     max-width: 100%;
+    width: 100%;
     height: auto;
   }
 
@@ -34,6 +35,82 @@
   &__bio_data {
     @include font($size: 1.2rem);
     color: -color(emperor);
+  }
+
+  &__full-data {
+    display: none;
+    visibility: hidden;
+  }
+
+  @include for-phone-landscape-up {
+    &__bio {
+      margin: 0 3rem;
+    }
+    &__table {
+      width: 100% !important;
+      margin-right: 0 !important;
+      margin-left: 0 !important;
+    }
+
+    img {
+      width: 70%;
+      margin-left: 15%;
+      margin-right: 15%;
+    }
+  }
+
+  @include for-tablet-landscape-up {
+    &__full-data {
+      display: table;
+      visibility: visible;
+    }
+
+    &__condensed-data {
+      display: none;
+      visibility: hidden;
+    }
+
+    &__bio {
+      width: 70%;
+      margin-left: 15%;
+      margin-right: 15%;
+    }
+
+    &__info {
+      padding-bottom: 1rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid -color(royal);
+    }
+
+    &__bio_category {
+      padding-bottom: 0.8rem;
+    }
+
+    img {
+      margin-top: 2rem;
+      width: 20rem;
+      margin-right: 3rem;
+      max-height: 20rem;
+      object-fit: cover;
+    }
+
+    &__image {
+      display: inline-block;
+    }
+
+    &__name {
+      @include font($weight: bold, $size: 3rem);
+      text-align: left;
+    }
+
+    &__bio {
+      margin: 0;
+      border-top: none;
+    }
+
+    &__basic_info {
+      display: inline-block;
+    }
   }
 }
 
@@ -84,5 +161,16 @@
       color: #789;
       cursor: pointer;
     }
+  }
+
+  @include for-phone-landscape-up {
+    padding: 0 3rem;
+  }
+
+  @include for-tablet-landscape-up {
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding: 0;
   }
 }
