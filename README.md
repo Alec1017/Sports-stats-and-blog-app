@@ -1,44 +1,34 @@
 # Sports stats and blog app
 
+<p>
+  <img
+    alt="wbl website"
+    src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Wbl-website.png">
+</p>
+
+## Live Site
+https://wbl.quietbroom.com
+
 ## Getting Started
 
-1) clone project
+1) Clone project
 
-2) cd into application
-
-```bash
-cd sports-stats-and-blog-app
-```
-
-3) install from Pipfile
+2) Navigate into application
 
 ```bash
-pipenv install
+cd sports-stats-and-blog-app/client
 ```
 
-4) activate Pipenv shell
+3) Install using yarn
 
 ```bash
-pipenv shell
+yarn install
 ```
 
-5) run the application
+4) Run development server
 
 ```bash
-python run.py
+yarn run dev
 ```
 
-app will be running on http://localhost:5000 by default
-
-
-## Database usage
-
-This app uses MongoDB with Flask-Pymongo.
-If necessary, documents can be added to mongo collections via the flask shell.
-
-```bash
-export FLASK_APP=run.py
-flask shell
-from app import mongo
-mongo.db.users.find({'username': 'test'})
-```
+The app will be running on http://localhost:3000 by default
