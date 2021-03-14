@@ -14,7 +14,7 @@ import Players from './pages/Players.vue';
 import Standings from './pages/Standings.vue';
 import Stats from './pages/Stats.vue';
 
-
+console.log('hello')
 Vue.use(VueRouter);
 Vue.use(VueApollo);
 

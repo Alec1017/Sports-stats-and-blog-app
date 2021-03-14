@@ -16,10 +16,10 @@ https://wbl.quietbroom.com
 2) Navigate into application
 
 ```bash
-cd sports-stats-and-blog-app/client
+cd sports-stats-and-blog-app
 ```
 
-3) Install using yarn
+3) Install using yarn (this project uses node v14.16.0)
 
 ```bash
 yarn install
